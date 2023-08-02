@@ -1,0 +1,128 @@
+:root {
+  --violet: #6a1b9a;
+  --gray: #808080;
+  --light-gray: #d9d9d9;
+  --white: #fff;
+  --black: #000;
+  --orange: #f6851b;
+  --red: red;
+  --background: #fafafa;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--gray);
+  background-color: var(--background);
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  place-items: center;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--violet);
+    border-radius: 15px;
+  }
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1170px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.section {
+  padding: 130px 0 50px;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+svg,
+svg path {
+  transition: all 0.3s;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+input {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  background-color: #fff;
+  transition: all 0.3s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
+  -webkit-text-fill-color: var(--gray) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+}

@@ -1,0 +1,96 @@
+.wrapper {
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.edit {
+  position: relative;
+}
+
+.imgWrapper {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 50px;
+  display: flex;
+  border-radius: 50%;
+  background-color: #3b5e61;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.buttons {
+  width: fit-content;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+  border-radius: 15px;
+  background: rgba(106, 27, 154, 0.65);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+}
+
+.btn {
+  display: flex;
+}
+
+.btnUpdate {
+  margin-right: 15px;
+}
+
+.formImgInput {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.formNames {
+  display: flex;
+  flex-direction: column;
+}
+
+.formNamesInput {
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03);
+  color: var(--black);
+  background: (--white);
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid transparent;
+
+  &:focus {
+    border: 1px solid var(--violet);
+  }
+}
+
+.btnSave {
+  margin: 10px auto 35px;
+  padding: 15px 30px;
+  background: var(--violet);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 15px;
+}
+
+.btnDeleteProfile {
+  color: var(--violet);
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px solid;
+  transition: all 0.3s;
+
+  &:hover {
+    border-bottom: 1px solid transparent;
+  }
+}

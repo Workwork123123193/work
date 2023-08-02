@@ -1,0 +1,228 @@
+.wrapper {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.top {
+  text-align: center;
+}
+
+.inner {
+  margin: 30px 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgWrapper {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 50%;
+  background-color: #3b5e61;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.name {
+  margin-right: 15px;
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--black);
+}
+
+.text {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.btnSettings {
+  width: 25px;
+  height: 25px;
+}
+
+.imgSettings {
+  transition: all 0.3s;
+
+  &:hover {
+    transform: rotate(30deg);
+  }
+}
+
+.premium {
+  margin: 50px 0;
+}
+
+.premiumActive {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 30px;
+  background: var(--violet);
+  text-align: center;
+}
+
+.premiumActiveTop {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.premiumActiveTitle {
+  margin-left: 10px;
+  transform: translateY(1px);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--white);
+}
+
+.premiumActiveText {
+  margin-bottom: 5px;
+  position: relative;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.premiumItem {
+  margin-bottom: 10px;
+  padding: 20px 30px;
+  background: var(--white);
+  border-radius: 30px;
+  border: 2px solid var(--violet);
+
+  &:last-child {
+    background: var(--violet);
+    border: none;
+
+    .premiumTitle,
+    .premiumRight {
+      color: var(--white);
+    }
+
+    .premiumBottom {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .premiumBold {
+      padding: 0 5px;
+      color: var(--white);
+    }
+  }
+}
+
+.premiumTop {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.premiumLeft {
+  display: flex;
+  align-items: center;
+}
+
+.premiumTitle {
+  margin-left: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--violet);
+}
+
+.premiumRight {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--violet);
+}
+
+.premiumCost {
+  margin-right: 5px;
+}
+
+.premiumBottom {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.seminarsTop {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--black);
+}
+
+.seminarsTitle {
+  margin-right: 5px;
+}
+
+.seminarsItem {
+  width: 360px;
+  height: 230px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  border-radius: 30px;
+  background: linear-gradient(0deg, #6a1b9a 0%, rgba(0, 0, 0, 0.5) 67.71%, rgba(0, 0, 0, 0) 100%),
+    url(<path-to-image>), lightgray 50% / cover no-repeat;
+  box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.1);
+}
+
+.netologia {
+  background-image: url('../../../assets/neotologia.webp');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.seminarsItemTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+}
+
+.seminarsItemInfos {
+  margin: 10px 0 15px;
+  display: flex;
+}
+
+.seminarsItemInfo {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+
+.seminarsItemSpan {
+  margin-left: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.24px;
+  opacity: 0.5;
+}
+
+.seminarsItemLink {
+  width: 100%;
+  height: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+}
