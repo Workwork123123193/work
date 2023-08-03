@@ -1,0 +1,74 @@
+.aside {
+  width: 390px;
+  padding: 50px 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  box-shadow: 5px 0px 50px 0px rgba(0, 0, 0, 0.03);
+  background: var(--white);
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.list1 {
+  margin: 70px 0 auto;
+}
+
+.list2 {
+  margin-top: auto;
+}
+
+.listItem:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.svgWrapper {
+  width: 27px;
+  display: flex;
+  justify-content: center;
+}
+
+.listSpan {
+  margin-left: 10px;
+}
+
+.listSpan {
+  font-size: 16px;
+  letter-spacing: 0.32px;
+}
+
+.listLink {
+  display: flex;
+  align-items: center;
+  color: var(--light-gray);
+
+  &:hover,
+  &.active {
+    color: var(--violet);
+  }
+
+  &:hover svg path,
+  &.active svg path {
+    fill: var(--violet);
+  }
+}
+
+.list1 .listItem:last-child .listLink:hover,
+.list1 .listItem:last-child .listLink.active,
+.list2 .listLink:hover,
+.list2 .listLink.active {
+  color: var(--violet);
+}
+
+.list1 .listItem:last-child .listLink:hover svg path,
+.list1 .listItem:last-child .listLink.active svg path,
+.list2 .listLink:hover svg path,
+.list2 .listLink.active svg path {
+  stroke: var(--violet);
+  fill: var(--white);
+}

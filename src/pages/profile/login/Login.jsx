@@ -65,7 +65,6 @@ const Login = ({ setActiveTab1, setActiveTab2 }) => {
             type="email"
             name="email"
           />
-          {/* {errors?.email && <p className={styles2.error}>Введите почту</p>} */}
         </div>
         <div className={styles2.item}>
           <input
@@ -78,7 +77,6 @@ const Login = ({ setActiveTab1, setActiveTab2 }) => {
             type="password"
             name="password"
           />
-          {/* {errors?.password && <p className={styles2.error}>Минимум 8 символов</p>} */}
         </div>
         <div className={styles2.bottom}>
           <div className={styles2.bottomLeft}>

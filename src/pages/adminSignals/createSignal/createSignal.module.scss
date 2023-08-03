@@ -1,0 +1,44 @@
+.title {
+  color: var(--black);
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: 0.64px;
+}
+
+.imgTitle {
+  margin: 30px 0 20px;
+  color: var(--violet);
+  font-weight: 600;
+}
+
+.imgWrapper {
+  display: flex;
+}
+
+.imgChange {
+  width: 180px;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background: var(--violet);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+}
+
+.imgSpan {
+  margin-top: 10px;
+  display: inline-flex;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--white);
+  text-align: center;
+}
+
+.imgInput {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}

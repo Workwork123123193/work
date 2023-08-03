@@ -49,15 +49,8 @@ body {
   flex-direction: column;
 }
 
-.container {
-  max-width: 1170px;
+main {
   width: 100%;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-.section {
-  padding: 130px 0 50px;
 }
 
 img {
@@ -71,7 +64,8 @@ a {
 }
 
 svg,
-svg path {
+svg path,
+svg stroke {
   transition: all 0.3s;
 }
 
@@ -125,4 +119,19 @@ h4,
 h5,
 p {
   margin: 0;
+}
+
+.container {
+  max-width: 1170px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.section {
+  padding: 130px 0 50px;
+}
+
+.admin-section {
+  padding: 55px 100px 50px 490px;
 }

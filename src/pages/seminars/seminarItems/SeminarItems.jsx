@@ -8,7 +8,16 @@ const SeminarItems = () => {
   const [seminars, setSeminars] = useState([]);
 
   useEffect(() => {
-    getSeminars().then(({ items }) => setSeminars(items));
+    const fetchData = async () => {
+      try {
+        const { items } = await getSeminars();
+        setSeminars(items);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (

@@ -16,6 +16,8 @@ const NotFound = lazy(() => import('./pages/notFound/NotFound'));
 const AdminNews = lazy(() => import('./pages/adminNews/AdminNews'));
 const AdminSignals = lazy(() => import('./pages/adminSignals/AdminSignals'));
 const AdminSeminars = lazy(() => import('./pages/adminSeminars/AdminSeminars'));
+const AdminInvestments = lazy(() => import('./pages/adminInvestments/AdminInvestments'));
+const AdminUsers = lazy(() => import('./pages/adminUsers/AdminUsers'));
 
 function App() {
   const { data } = useSelector(({ user }) => user);
@@ -23,7 +25,7 @@ function App() {
   console.log(data);
   return (
     <>
-      {data === null || data.user.role === 'user' ? (
+      {data === null || data?.user?.role === 'user' || data?.confirmLink ? (
         <Routes>
           <Route path="/" element={<Layout />}>
             {[
@@ -49,6 +51,8 @@ function App() {
               { path: '/', component: <AdminNews /> },
               { path: '/signals', component: <AdminSignals /> },
               { path: '/seminars', component: <AdminSeminars /> },
+              { path: '/investments', component: <AdminInvestments /> },
+              { path: '/users', component: <AdminUsers /> },
               { path: '*', component: <NotFound /> },
             ].map(({ path, component }) => (
               <Route

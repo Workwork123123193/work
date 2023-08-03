@@ -5,7 +5,7 @@ import { Toast } from '../toastContainer/ToastContainer';
 
 const Layout = () => {
   return (
-    <>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Aside />
 
       <main>
@@ -13,7 +13,7 @@ const Layout = () => {
       </main>
 
       <Toast />
-    </>
+    </div>
   );
 };
 

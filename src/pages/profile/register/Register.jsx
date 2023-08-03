@@ -58,7 +58,6 @@ const Register = ({ setActiveTab1, setActiveTab2 }) => {
             name="firstName"
             required
           />
-          {/* {errors?.firstName && <p className={styles.error}>Только буквы</p>} */}
         </div>
         <div className={styles.item}>
           <input
@@ -73,7 +72,6 @@ const Register = ({ setActiveTab1, setActiveTab2 }) => {
             name="lastName"
             required
           />
-          {/* {errors?.lastName && <p className={styles.error}>Только буквы</p>} */}
         </div>
         <div className={styles.item}>
           <input
@@ -86,7 +84,6 @@ const Register = ({ setActiveTab1, setActiveTab2 }) => {
             name="email"
             required
           />
-          {/* {errors?.email && <p className={styles.error}>Введите почту</p>} */}
         </div>
         <div className={styles.item}>
           <input
@@ -99,7 +96,6 @@ const Register = ({ setActiveTab1, setActiveTab2 }) => {
             name="password"
             required
           />
-          {/* {errors?.password && <p className={styles.error}>Минимум 8 символов</p>} */}
         </div>
         <div className={styles.item}>
           <input
