@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken } from './token';
 
-const base = 'http://45.12.72.86:3000/';
+const base = 'http://45.12.72.86:3001/';
 
 const client = axios.create({
   baseURL: base,

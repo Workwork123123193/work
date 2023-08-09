@@ -2,10 +2,16 @@ import { useState, useEffect } from 'react';
 
 import styles from './seminarsItems.module.scss';
 import SeminarItem from '../seminarItem/SeminarItem';
+import ModalBuy from '../modalBuy/ModalBuy';
 import { getSeminars } from '@service/user/seminars';
 
 const SeminarItems = () => {
   const [seminars, setSeminars] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +33,7 @@ const SeminarItems = () => {
             return <SeminarItem key={item.id} {...item} />;
           })
         : null}
+      <ModalBuy isOpen={isOpen} handleCloseModal={handleCloseModal} />
     </div>
   );
 };

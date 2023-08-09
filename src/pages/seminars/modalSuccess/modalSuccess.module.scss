@@ -1,0 +1,22 @@
+.content {
+  min-width: 555px;
+}
+
+.imgWrapper {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 15px 50px;
+  display: flex;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 15px;
+  color: var(--white);
+  background: var(--violet);
+}
