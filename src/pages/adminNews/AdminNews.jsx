@@ -17,6 +17,7 @@ const AdminNews = () => {
       try {
         const response = await getNews();
         setData(response);
+        console.log(response)
       } catch (error) {
         console.log(error);
       }

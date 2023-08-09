@@ -1,7 +1,7 @@
 import { authClient } from '../client';
 
 const getNews = async () => {
-  const { data } = await authClient().get(`news?page=1`);
+  const { data } = await authClient().get(`news?page=12`);
   return data;
 };
 
