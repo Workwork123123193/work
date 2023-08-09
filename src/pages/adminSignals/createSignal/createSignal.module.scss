@@ -25,6 +25,7 @@
   border-radius: 15px;
   background: var(--violet);
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
 }
 
 .imgSpan {
@@ -41,4 +42,137 @@
   visibility: hidden;
   width: 0;
   height: 0;
+}
+
+.imgLoaded {
+  width: 180px;
+  height: 104px;
+  margin-right: 30px;
+  display: flex;
+  position: relative;
+  border-radius: 15px;
+  background-color: var(--light-gray);
+
+  img {
+    border-radius: 15px;
+  }
+}
+
+.trashBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 55px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+  background-color: var(--violet);
+  z-index: 10;
+}
+
+.voice {
+  margin: 40px 0;
+}
+
+.voiceTitle {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: var(--violet);
+}
+
+.voiceBtns {
+  display: flex;
+  button {
+    transition: all 0s;
+  }
+}
+
+.headerTitle,
+.descriptionTitle,
+.themeTitle {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: var(--violet);
+}
+
+.descriptionInput,
+.headerInput,
+.themeInput {
+  width: 100%;
+  padding: 15px 20px;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 10px;
+  color: var(--gray);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03);
+  border: 1px solid transparent;
+
+  &::placeholder {
+    color: var(--light-gray);
+  }
+
+  &:focus {
+    border: 1px solid var(--violet);
+  }
+}
+
+.descriptionInput {
+  resize: none;
+  height: 55px;
+  transition: all 0.3s;
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--violet);
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.description {
+  margin: 40px 0;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottomCancel,
+.bottomAdd {
+  padding: 15px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  color: var(--white);
+  background: var(--light-gray);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03);
+
+  &:hover {
+    background: var(--violet);
+  }
+}
+
+.bottomAdd {
+  background: var(--violet);
+}
+
+.voiceWrapper {
+  display: flex;
+}
+
+.deleteVoice {
+  margin-left: 30px;
+  width: 59px;
+  height: 59px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--violet);
+  border-radius: 50%;
 }

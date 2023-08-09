@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { client } from '@service/client';
+import { client, authClient } from '@service/client';
 
 export const fetchRegistration = createAsyncThunk(`auth/register`, async (payload) => {
   const { data } = await client.post(`auth/register`, payload);
@@ -7,7 +7,7 @@ export const fetchRegistration = createAsyncThunk(`auth/register`, async (payloa
 });
 
 export const fetchLogin = createAsyncThunk(`auth/login`, async (payload) => {
-  const { data } = await client.post(`auth/login`, payload);
+  const { data } = await authClient().post(`auth/login`, payload);
   return data;
 });
 

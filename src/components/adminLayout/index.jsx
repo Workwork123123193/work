@@ -1,14 +1,15 @@
 import { Outlet } from 'react-router-dom';
 
+import styles from './adminLayout.module.scss';
 import Aside from './aside/Aside';
 import { Toast } from '../toastContainer/ToastContainer';
 
 const Layout = () => {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div className={styles.wrapper}>
       <Aside />
 
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
 

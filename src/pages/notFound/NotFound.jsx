@@ -1,9 +1,7 @@
+import styles from './noFound.module.scss';
+
 const NotFound = () => {
-  return (
-    <section>
-      <div className="container">К сожалению такой страницы не существует</div>
-    </section>
-  );
+  return <section className={styles.nofound}>Такой страницы не существует</section>;
 };
 
 export default NotFound;

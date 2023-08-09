@@ -43,7 +43,7 @@ const SeminarItem = ({ imageUrl, title, date, seats, description }) => {
           </div>
         </div>
         <p className={styles.p}>{paragraph}</p>
-        <ul>
+        <ul className={styles.ul}>
           {listItems.map((item, index) => {
             return (
               <li className={styles.li} key={index}>

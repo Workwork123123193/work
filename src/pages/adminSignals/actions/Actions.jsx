@@ -4,7 +4,6 @@ import Select from 'react-select';
 
 import styles from './actions.module.scss';
 import './reactSelect.scss';
-import arrowIcon from '@assets/arrow-down-violet.svg';
 import searchIcon from '@assets/search.svg';
 
 const sorts = [
@@ -14,7 +13,7 @@ const sorts = [
   { value: 'name,desc', label: 'Названию (с конца алфавита)' },
 ];
 
-const Actions = ({ setTabs, setSort, setSearch }) => {
+const Actions = ({ setTabs, setSort, setSearch, count }) => {
   const [localSearch, setLocalSearch] = useState('');
 
   const updateSearchValue = (e) => {
@@ -31,7 +30,7 @@ const Actions = ({ setTabs, setSort, setSearch }) => {
 
   return (
     <>
-      <h1 className={styles.title}>Сигналы (2)</h1>
+      <h1 className={styles.title}>Сигналы ({count})</h1>
       <div className={styles.actions}>
         <button className={styles.button} onClick={() => setTabs('create')}>
           <span className={styles.plus}>+</span>
@@ -48,12 +47,13 @@ const Actions = ({ setTabs, setSort, setSearch }) => {
         </div>
         <div className={styles.searchWrapper}>
           <input
-            className={styles.search}
+            className={styles.searchInput}
             onChange={updateSearchValue}
             value={localSearch}
             type="text"
             placeholder="Поиск"
           />
+          <img className={styles.searchIcon} src={searchIcon} width={14} height={15} alt="search" />
         </div>
       </div>
     </>

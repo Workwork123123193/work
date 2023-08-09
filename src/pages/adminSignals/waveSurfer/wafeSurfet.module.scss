@@ -1,0 +1,28 @@
+.wave {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  margin-right: 30px;
+  display: flex;
+}
+
+.road {
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  width: 390px;
+  cursor: pointer;
+}
+
+.right {
+  margin-top: 12px;
+  color: var(--light-gray);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.28px;
+}

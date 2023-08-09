@@ -1,12 +1,15 @@
-import { authClient } from '../client';
+import { authClient, authClientPostImg, authClientGetImg } from '../client';
 
 const getAvatar = async () => {
-  const { data } = await authClient().get(`profile/avatar`);
+  const { data } = await authClientGetImg().get(`profile/avatar`);
   return data;
 };
 
 const setAvatar = async (payload) => {
-  const { data } = await authClient().post(`profile/avatar`, payload);
+  let img = new FormData();
+  img.append('file', payload);
+
+  const { data } = await authClientPostImg().post(`profile/avatar`, img);
   return data;
 };
 

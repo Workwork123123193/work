@@ -6,6 +6,7 @@
     border-radius: 10px !important;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03) !important;
     transition: all 0.3s !important;
+    border-color: transparent !important;
 
     &--is-focused {
       border-color: var(--violet) !important;
@@ -59,7 +60,7 @@
     }
 
     &:hover {
-      color: var(--light-gray) !important;
+      color: var(--gray) !important;
     }
 
     &--is-selected {

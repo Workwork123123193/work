@@ -1,0 +1,33 @@
+.wrapper {
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.item {
+  &.number {
+    width: 20px;
+  }
+
+  &.avatar {
+    width: 61px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &.login {
+    width: 230px;
+  }
+
+  &.subscribe {
+    width: 85px;
+    text-align: center;
+  }
+
+  &.wallet {
+    width: 265px;
+    text-align: center;
+  }
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import styles from './editCabinet.module.scss';
 import avatarPng from '@assets/user.png';
@@ -6,22 +6,13 @@ import avatarWebp from '@assets/user.webp';
 import updateImg from '@assets/change-avatar.svg';
 import deleteImg from '@assets/delete.svg';
 import { useDispatch } from 'react-redux';
-import {
-  getAvatar,
-  setAvatar,
-  deleteAvatar,
-  getProfile,
-  updateProfile,
-  deleteProfile,
-  getSeminars,
-} from '@service/user/profile';
-import { logout } from '../../../redux/user/userSlice';
+import { setAvatar, deleteAvatar, updateProfile, deleteProfile } from '@service/user/profile';
+import { logout } from '@redux/user/userSlice';
 
 const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
   const dispatch = useDispatch();
   const fileRef = useRef(null);
   const [data, setData] = useState({ firstName: user.firstName, lastName: user.lastName });
-  const [img, setImg] = useState(null);
 
   const handleUpdateFirstName = (e) => {
     setData({ ...data, firstName: e.target.value });
@@ -33,13 +24,7 @@ const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
 
   const handleSetImg = async (e) => {
     const file = e.target.files[0];
-    const formData = new FormData();
-
-    formData.append('file', file);
-
-    console.log(...formData);
-
-    setAvatar(formData)
+    setAvatar(file)
       .then((data) => {
         console.log(data);
       })
@@ -49,7 +34,12 @@ const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
   };
 
   const handleDeleteImg = async () => {
-    //  deleteAvatar()
+    try {
+      const response = await deleteAvatar();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleOpenFile = () => {
@@ -77,19 +67,6 @@ const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
       console.error(error);
     }
   };
-
-  // useEffect(() => {
-  //   getProfile().then((data) => {
-  //     setUser(data);
-  //     console.log(data);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   getAvatar().then((data) => {
-  //     setImg(data);
-  //   });
-  // }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -163,8 +140,3 @@ const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
 };
 
 export default EditCabinet;
-
-// const setAvatar = async (payload) => {
-//     const { data } = await authClient().post(`profile/avatar`, payload);
-//     return data;
-//   };

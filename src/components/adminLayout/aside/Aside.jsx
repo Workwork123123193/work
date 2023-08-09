@@ -1,8 +1,11 @@
-import styles from './aside.module.scss';
-import headerStyles from '../../layout/header/header.module.scss';
 import { Link, NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import styles from './aside.module.scss';
+import headerStyles from '../../layout/header/header.module.scss';
+import { logout } from '@redux/user/userSlice';
 import logo from '@assets/logo.svg';
 import { ReactComponent as News } from '@assets/news.svg';
 import { ReactComponent as Signals } from '@assets/signals.svg';
@@ -20,12 +23,15 @@ const links1 = [
   { href: '/users', name: 'Пользователи', svg: <Users /> },
 ];
 
-const links2 = [
-  { href: '/settings', name: 'Настройки', svg: <Settings /> },
-  { href: '/none', name: 'Выйти', svg: <Exit /> },
-];
-
 const Aside = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
   return (
     <aside className={styles.aside}>
       <nav className={styles.nav}>
@@ -53,20 +59,22 @@ const Aside = () => {
           })}
         </ul>
         <ul className={styles.list2}>
-          {links2.map((link) => {
-            return (
-              <li className={styles.listItem} key={link.name}>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? cn(styles.listLink, styles.active) : styles.listLink
-                  }
-                  to={link.href}>
-                  {link.svg}
-                  <span className={styles.listSpan}>{link.name}</span>
-                </NavLink>
-              </li>
-            );
-          })}
+          <li className={styles.listItem}>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? cn(styles.listLink, styles.active) : styles.listLink
+              }
+              to={'/settings'}>
+              <Settings />
+              <span className={styles.listSpan}>Настройки</span>
+            </NavLink>
+          </li>
+          <li className={styles.listItem}>
+            <button className={styles.listLink} onClick={handleLogout}>
+              <Exit />
+              <span className={styles.listSpan}>Выйти</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </aside>

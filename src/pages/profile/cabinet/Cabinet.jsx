@@ -3,15 +3,7 @@ import cn from 'classnames';
 
 import styles from './cabinet.module.scss';
 import EditCabinet from '../editCabinet/EditCabinet';
-import {
-  getAvatar,
-  setAvatar,
-  deleteAvatar,
-  getProfile,
-  updateProfile,
-  deleteProfile,
-  getSeminars,
-} from '@service/user/profile';
+import { getAvatar, getProfile } from '@service/user/profile';
 import avatarPng from '@assets/user.png';
 import avatarWebp from '@assets/user.webp';
 import settings from '@assets/settings-violet.svg';
@@ -25,6 +17,7 @@ import premiumViolet from '@assets/premium-violet.svg';
 const Cabinet = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [user, setUser] = useState({});
+  const [img, setImg] = useState(null);
 
   const handleToggleEditMode = () => {
     setIsEditMode((prev) => !prev);
@@ -32,14 +25,15 @@ const Cabinet = () => {
 
   useEffect(() => {
     getProfile().then((data) => {
-      setUser(data);
       console.log(data);
+      setUser(data);
     });
   }, []);
 
   // useEffect(() => {
   //   getAvatar().then((data) => {
   //     console.log(data);
+  //     setImg(data);
   //   });
   // }, []);
 
@@ -49,7 +43,7 @@ const Cabinet = () => {
         <>
           <div className={styles.top}>
             <div className={styles.imgWrapper}>
-              {user.avatarUrl === null ? (
+              {img !== false ? (
                 <picture>
                   <source srcSet={avatarWebp} type="image/webp" />
                   <img
@@ -64,7 +58,7 @@ const Cabinet = () => {
               ) : (
                 <img
                   className={styles.avatar}
-                  src={user.avatarUrl}
+                  src={img}
                   width={150}
                   height={150}
                   alt="avatar"
