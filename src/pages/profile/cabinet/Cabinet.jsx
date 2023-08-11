@@ -18,6 +18,7 @@ const Cabinet = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [user, setUser] = useState({});
   const [img, setImg] = useState(null);
+  const [isImgDelete, setIsImgDelete] = useState(false);
 
   const handleToggleEditMode = () => {
     setIsEditMode((prev) => !prev);
@@ -35,7 +36,7 @@ const Cabinet = () => {
       const url = URL.createObjectURL(blob);
       setImg(url);
     });
-  }, []);
+  }, [isImgDelete]);
 
   return (
     <div className={styles.wrapper}>
@@ -177,8 +178,10 @@ const Cabinet = () => {
       ) : (
         <EditCabinet
           user={user}
-          img={img}
           setUser={setUser}
+          setImg2={setImg}
+          isImgDelete={isImgDelete}
+          setIsImgDelete={setIsImgDelete}
           handleToggleEditMode={handleToggleEditMode}
         />
       )}

@@ -1,4 +1,4 @@
-import { authClient, authClientPostImg, authClientGetImg } from '../client';
+import { authClient, authClientPostMedia, authClientGetMedia } from '../client';
 
 const getSeminars = async () => {
   const { data } = await authClient().get(`seminar?page=1`);
@@ -30,12 +30,12 @@ const createImg = async ({ id, imageUrl }) => {
   let form = new FormData();
   form.append('file', imageUrl);
 
-  const data = await authClientPostImg().post(`seminar/${id}/image`, form);
+  const data = await authClientPostMedia().post(`seminar/${id}/image`, form);
   return data;
 };
 
 const getImg = async (id) => {
-  const data = await authClientGetImg().get(`seminar/${id}/image`);
+  const data = await authClientGetMedia().get(`seminar/${id}/image`);
   return data;
 };
 

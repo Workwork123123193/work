@@ -1,10 +1,4 @@
-import {
-  authClient,
-  authClientPostImg,
-  authClientGetImg,
-  authClientGetVoice,
-  authClientPostVoice,
-} from '../client';
+import { authClient, authClientPostMedia, authClientGetMedia } from '../client';
 
 const getSignals = async () => {
   const { data } = await authClient().get(`signal?page=1`);
@@ -35,12 +29,12 @@ const createImg = async ({ id, imageUrl }) => {
   let form = new FormData();
   form.append('file', imageUrl);
 
-  const data = await authClientPostImg().post(`signal/${id}/image`, form);
+  const data = await authClientPostMedia().post(`signal/${id}/image`, form);
   return data;
 };
 
 const getImg = async (id) => {
-  const data = await authClientGetImg().get(`signal/${id}/image`);
+  const data = await authClientGetMedia().get(`signal/${id}/image`);
   return data;
 };
 
@@ -52,12 +46,12 @@ const deleteImg = async (id) => {
 const createVoice = async ({ id, voiceUrl }) => {
   let form = new FormData();
   form.append('file', voiceUrl);
-  const data = await authClientPostVoice().post(`signal/${id}/voice`, form);
+  const data = await authClientPostMedia().post(`signal/${id}/voice`, form);
   return data;
 };
 
 const getVoice = async (id) => {
-  const data = await authClientGetVoice().get(`signal/${id}/voice`);
+  const data = await authClientGetMedia().get(`signal/${id}/voice`);
   return data;
 };
 

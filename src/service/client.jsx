@@ -20,7 +20,7 @@ const authClient = () => {
   });
 };
 
-const authClientPostVoice = () => {
+const authClientPostMedia = () => {
   return axios.create({
     baseURL: base,
     headers: {
@@ -30,42 +30,14 @@ const authClientPostVoice = () => {
   });
 };
 
-const authClientGetVoice = () => {
+const authClientGetMedia = () => {
   return axios.create({
     baseURL: base,
     headers: {
       Authorization: 'Bearer ' + getToken(),
     },
-    responseType: "arraybuffer",
+    responseType: 'arraybuffer',
   });
 };
 
-const authClientPostImg = () => {
-  return axios.create({
-    baseURL: base,
-    headers: {
-      filename: 'image.jpeg',
-      contentType: 'image/jpeg',
-      Authorization: 'Bearer ' + getToken(),
-    },
-  });
-};
-
-const authClientGetImg = () => {
-  return axios.create({
-    baseURL: base,
-    headers: {
-      Authorization: 'Bearer ' + getToken(),
-    },
-    responseType: "arraybuffer",
-  });
-};
-
-export {
-  client,
-  authClient,
-  authClientGetVoice,
-  authClientPostVoice,
-  authClientPostImg,
-  authClientGetImg,
-};
+export { client, authClient, authClientPostMedia, authClientGetMedia };
