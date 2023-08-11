@@ -36,6 +36,7 @@ const authClientGetVoice = () => {
     headers: {
       Authorization: 'Bearer ' + getToken(),
     },
+    responseType: "arraybuffer",
   });
 };
 
@@ -56,6 +57,7 @@ const authClientGetImg = () => {
     headers: {
       Authorization: 'Bearer ' + getToken(),
     },
+    responseType: "arraybuffer",
   });
 };
 

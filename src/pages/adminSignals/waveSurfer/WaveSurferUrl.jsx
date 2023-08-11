@@ -22,6 +22,7 @@ const formWaveSurferOptions = (ref) => ({
 });
 
 function WaveformUrl({ voiceUrl }) {
+  console.log(voiceUrl);
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);

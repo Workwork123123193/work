@@ -1,6 +1,7 @@
-import styles from '../styles.module.scss';
+import styles from '../../../styles.module.scss';
 import deleteSvg from '@assets/delete.svg';
 import clockWhiteSvg from '@assets/clock-white.svg';
+import defaultImagePath from '@assets/neotologia.webp'; // Default image path
 import { useEffect, useState } from 'react';
 
 const NewsItem = ({ title, category, imageUrl, source, date, setIsDelete }) => {
@@ -64,7 +65,7 @@ const NewsItem = ({ title, category, imageUrl, source, date, setIsDelete }) => {
       </div>
 
       {/* Backgroung image */}
-      <img className={`${styles.bImg} ${styles.bImg_v1}`} crossOrigin="anonymous" src={imageUrl} alt="card-background" />
+      <img className={`${styles.bImg} ${styles.bImg_v1}`} crossOrigin="anonymous" src={imageUrl !== null ? imageUrl : defaultImagePath} alt="card-background" />
     </div>
   );
 };
