@@ -16,7 +16,7 @@ const SignalItem = ({ item, setIsDelete }) => {
   const handleDeleteItem = async (id) => {
     try {
       const response = await deleteSignal(id);
-      //после успешного удаление перерисовываем страницу с обновленным массивом
+      //после удаление перерисовываем страницу с обновленным массивом
       setIsDelete((prev) => !prev);
     } catch (error) {
       console.log(error);
@@ -30,16 +30,13 @@ const SignalItem = ({ item, setIsDelete }) => {
         const blob = new Blob([data]);
         const url = URL.createObjectURL(blob);
         setImg(url);
-
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchImg();
-
   }, [item.id]);
-
 
   useEffect(() => {
     const fetchAudio = async () => {
@@ -47,7 +44,6 @@ const SignalItem = ({ item, setIsDelete }) => {
         const { data } = await getVoice(item.id);
         const blob = new Blob([data]);
         var url = URL.createObjectURL(blob);
-        console.log("audio:", data)
         setVoiceUrl(url);
       } catch (error) {
         console.log(error);
