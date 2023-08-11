@@ -1,5 +1,5 @@
-import styles from '../styles.module.scss';
 import NewsItem from '../newsItem/NewsItem';
+import styles from "../../../styles.module.scss";
 
 const SeminarItems = ({ items, setIsDelete }) => {
   return (

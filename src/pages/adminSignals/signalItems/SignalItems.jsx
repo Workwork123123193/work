@@ -7,8 +7,8 @@ const SignalItems = ({ items, setIsDelete }) => {
     <div className={styles.signals}>
       {items?.length
         ? items.map((item) => {
-            return <SignalItem key={item.id} item={item} setIsDelete={setIsDelete} />;
-          })
+          return <SignalItem key={item.id} item={item} setIsDelete={setIsDelete} />;
+        })
         : 'Сигналов нету'}
     </div>
   );
