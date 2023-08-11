@@ -1,5 +1,13 @@
+import Items from './items/Items';
+
 const News = () => {
-  return <div className="container">NewsNewsNewsNewsNewsNewsNewsNews</div>;
+  return (
+    <section className="section">
+      <div className="container">
+        <Items />
+      </div>
+    </section>
+  );
 };
 
 export default News;

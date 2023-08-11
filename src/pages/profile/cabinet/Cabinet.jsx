@@ -25,17 +25,17 @@ const Cabinet = () => {
 
   useEffect(() => {
     getProfile().then((data) => {
-      console.log(data);
       setUser(data);
     });
   }, []);
 
-  // useEffect(() => {
-  //   getAvatar().then((data) => {
-  //     console.log(data);
-  //     setImg(data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    getAvatar().then((data) => {
+      const blob = new Blob([data]);
+      const url = URL.createObjectURL(blob);
+      setImg(url);
+    });
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -43,7 +43,16 @@ const Cabinet = () => {
         <>
           <div className={styles.top}>
             <div className={styles.imgWrapper}>
-              {img !== false ? (
+              {img ? (
+                <img
+                  className={styles.avatar}
+                  src={img}
+                  width={150}
+                  height={150}
+                  alt="avatar"
+                  loading="lazy"
+                />
+              ) : (
                 <picture>
                   <source srcSet={avatarWebp} type="image/webp" />
                   <img
@@ -55,15 +64,6 @@ const Cabinet = () => {
                     loading="lazy"
                   />
                 </picture>
-              ) : (
-                <img
-                  className={styles.avatar}
-                  src={img}
-                  width={150}
-                  height={150}
-                  alt="avatar"
-                  loading="lazy"
-                />
               )}
             </div>
             <div className={styles.inner}>
@@ -175,7 +175,12 @@ const Cabinet = () => {
           </div>
         </>
       ) : (
-        <EditCabinet user={user} setUser={setUser} handleToggleEditMode={handleToggleEditMode} />
+        <EditCabinet
+          user={user}
+          img={img}
+          setUser={setUser}
+          handleToggleEditMode={handleToggleEditMode}
+        />
       )}
     </div>
   );
