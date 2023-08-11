@@ -32,7 +32,6 @@ const deleteSignal = async (id) => {
 };
 
 const createImg = async ({ id, imageUrl }) => {
-  console.log(id, imageUrl);
   let form = new FormData();
   form.append('file', imageUrl);
 

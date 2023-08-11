@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { setAvatar, deleteAvatar, updateProfile, deleteProfile } from '@service/user/profile';
 import { logout } from '@redux/user/userSlice';
 
-const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
+const EditCabinet = ({ user, img, setUser, handleToggleEditMode }) => {
   const dispatch = useDispatch();
   const fileRef = useRef(null);
   const [data, setData] = useState({ firstName: user.firstName, lastName: user.lastName });
@@ -36,7 +36,6 @@ const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
   const handleDeleteImg = async () => {
     try {
       const response = await deleteAvatar();
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +71,9 @@ const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
     <div className={styles.wrapper}>
       <div className={styles.edit}>
         <div className={styles.imgWrapper}>
-          {user.avatarUrl === null ? (
+          {img ? (
+            <img className={styles.avatar} src={img} width={150} height={150} alt="avatar" />
+          ) : (
             <picture>
               <source srcSet={avatarWebp} type="image/webp" />
               <img
@@ -83,14 +84,6 @@ const EditCabinet = ({ user, setUser, handleToggleEditMode }) => {
                 alt="avatar"
               />
             </picture>
-          ) : (
-            <img
-              className={styles.avatar}
-              src={user.avatarUrl}
-              width={150}
-              height={150}
-              alt="avatar"
-            />
           )}
         </div>
         <div className={styles.buttons}>

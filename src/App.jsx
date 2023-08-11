@@ -7,6 +7,7 @@ import { Preloader } from './components';
 import { useSelector } from 'react-redux';
 
 const News = lazy(() => import('./pages/news/News'));
+const NewsItem = lazy(() => import('./pages/newsItem/NewsItem'));
 const Signals = lazy(() => import('./pages/signals/Signals'));
 const Investments = lazy(() => import('./pages/investments/Investments'));
 const Seminars = lazy(() => import('./pages/seminars/Seminars'));
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             {[
               { path: '/', component: <News /> },
+              { path: '/:id', component: <NewsItem /> },
               { path: '/signals', component: <Signals /> },
               { path: '/investments', component: <Investments /> },
               { path: '/seminars', component: <Seminars /> },
