@@ -179,7 +179,8 @@ const Cabinet = () => {
         <EditCabinet
           user={user}
           setUser={setUser}
-          setImg2={setImg}
+          img={img}
+          setImg={setImg}
           isImgDelete={isImgDelete}
           setIsImgDelete={setIsImgDelete}
           handleToggleEditMode={handleToggleEditMode}

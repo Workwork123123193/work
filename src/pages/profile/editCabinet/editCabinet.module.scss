@@ -94,3 +94,8 @@
     border-bottom: 1px solid transparent;
   }
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

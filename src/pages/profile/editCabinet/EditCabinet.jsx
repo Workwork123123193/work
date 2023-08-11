@@ -1,46 +1,20 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
+import cn from 'classnames';
 import { toast } from 'react-toastify';
+
 import styles from './editCabinet.module.scss';
 import avatarPng from '@assets/user.png';
 import avatarWebp from '@assets/user.webp';
 import updateImg from '@assets/change-avatar.svg';
 import deleteImg from '@assets/delete.svg';
 import { useDispatch } from 'react-redux';
-import {
-  setAvatar,
-  getAvatar,
-  deleteAvatar,
-  updateProfile,
-  deleteProfile,
-} from '@service/user/profile';
+import { setAvatar, deleteAvatar, updateProfile, deleteProfile } from '@service/user/profile';
 import { logout } from '@redux/user/userSlice';
 
-const EditCabinet = ({
-  user,
-  setUser,
-  isImgDelete,
-  setIsImgDelete,
-  setImg2,
-  handleToggleEditMode,
-}) => {
+const EditCabinet = ({ user, setUser, setIsImgDelete, img, setImg, handleToggleEditMode }) => {
   const dispatch = useDispatch();
   const fileRef = useRef(null);
   const [data, setData] = useState({ firstName: user.firstName, lastName: user.lastName });
-  const [img, setImg] = useState(null);
-
-  useEffect(() => {
-    const fetchImg = async () => {
-      try {
-        const response = await getAvatar();
-        const blob = new Blob([response]);
-        const url = URL.createObjectURL(blob);
-        setImg(url);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchImg();
-  }, [isImgDelete]);
 
   const handleUpdateFirstName = (e) => {
     setData({ ...data, firstName: e.target.value });
@@ -51,25 +25,25 @@ const EditCabinet = ({
   };
 
   const handleSetImg = async (e) => {
-    const file = e.target.files[0];
-    setAvatar(file)
-      .then((data) => {
-        setIsImgDelete((prev) => !prev);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const file = e.target.files[0];
+      await setAvatar(file);
+      setIsImgDelete((prev) => !prev);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDeleteImg = async () => {
-    try {
-      setImg(null);
-      setImg2(null);
-      setIsImgDelete((prev) => !prev);
-      fileRef.current.value = '';
-      const response = await deleteAvatar();
-    } catch (error) {
-      console.log(error);
+    if (img) {
+      try {
+        setImg(null);
+        setIsImgDelete((prev) => !prev);
+        fileRef.current.value = '';
+        await deleteAvatar();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -80,8 +54,7 @@ const EditCabinet = ({
   const handleUpdatePfoile = async (e) => {
     e.preventDefault();
     try {
-      const response = await updateProfile(data);
-
+      await updateProfile(data);
       setUser((prev) => ({ ...prev, ...data }));
       handleToggleEditMode();
     } catch (error) {
@@ -90,12 +63,16 @@ const EditCabinet = ({
   };
 
   const handleDeleteProfile = async () => {
-    try {
-      const response = await deleteProfile();
-      dispatch(logout());
-      toast('Профиль удален');
-    } catch (error) {
-      console.error(error);
+    const confirmed = confirm('Вы уверены, что хотите удалить профиль?');
+
+    if (confirmed) {
+      try {
+        const response = await deleteProfile();
+        dispatch(logout());
+        toast('Профиль удален');
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -128,7 +105,11 @@ const EditCabinet = ({
               name="file"
             />
           </form>
-          <button className={styles.btn} onClick={handleOpenFile}>
+          <button
+            className={cn(styles.btn, {
+              [styles.disabled]: img,
+            })}
+            onClick={handleOpenFile}>
             <img
               className={styles.btnUpdate}
               src={updateImg}

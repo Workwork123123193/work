@@ -108,11 +108,11 @@ const AdminSignal = () => {
       description: inputDesk,
     };
 
-    const data = await updateSignall(id, signal);
+    await updateSignall(id, signal);
 
     if (isImgChange && imageUrl) {
       try {
-        const response = await createImg({ id, imageUrl });
+        await createImg({ id, imageUrl });
       } catch (error) {
         console.error('Ошибка при создании изображения:', error);
       }
@@ -120,7 +120,7 @@ const AdminSignal = () => {
 
     if (isImgChange && !imageUrl) {
       try {
-        const response = await deleteImg(id);
+        await deleteImg(id);
       } catch (error) {
         console.error('Ошибка при удалении изображения:', error);
       }
@@ -128,7 +128,7 @@ const AdminSignal = () => {
 
     if (voiceLocal) {
       try {
-        const response = await createVoice({ id, voiceUrl });
+        await createVoice({ id, voiceUrl });
       } catch (error) {
         console.error('Ошибка при отправке аудио:', error);
       }
@@ -136,7 +136,7 @@ const AdminSignal = () => {
 
     if (!voiceLocal && isVoiceChange) {
       try {
-        const response = await deleteVoice(id);
+        await deleteVoice(id);
       } catch (error) {
         console.error('Ошибка при отправке аудио:', error);
       }

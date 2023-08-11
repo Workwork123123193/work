@@ -52,7 +52,7 @@ const CreateSignal = ({ setTabs }) => {
 
     if (imageUrl) {
       try {
-        const imgData = await createImg({ id, imageUrl });
+        await createImg({ id, imageUrl });
       } catch (error) {
         console.error('Ошибка при отправке изображения:', error);
       }
@@ -60,7 +60,7 @@ const CreateSignal = ({ setTabs }) => {
 
     if (voiceUrl) {
       try {
-        const voiceData = await createVoice({ id, voiceUrl });
+        await createVoice({ id, voiceUrl });
       } catch (error) {
         console.error('Ошибка при отправке аудио:', error);
       }
