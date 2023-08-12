@@ -30,10 +30,10 @@ const Login = ({ setActiveTab1, setActiveTab2 }) => {
           console.log(response);
         }
       } else {
-        reset();
+        navigate('/');
         toast('Вы авторизованы');
         setToken(response.payload.token);
-        navigate('/');
+        reset();
       }
     } catch (error) {
       console.log(error);

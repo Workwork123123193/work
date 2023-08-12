@@ -90,8 +90,11 @@
 }
 
 .premiumItem {
+  width: 100%;
   margin-bottom: 10px;
   padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border-radius: 30px;
   border: 2px solid var(--violet);
@@ -117,6 +120,7 @@
 }
 
 .premiumTop {
+  width: 100%;
   margin-bottom: 10px;
   display: flex;
   align-items: center;

@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import styles from './cabinet.module.scss';
 import EditCabinet from '../editCabinet/EditCabinet';
-import { getAvatar, getProfile } from '@service/user/profile';
+import { getAvatar, getProfile, getSubscription, buySubscription } from '@service/user/profile';
 import avatarPng from '@assets/user.png';
 import avatarWebp from '@assets/user.webp';
 import settings from '@assets/settings-violet.svg';
@@ -18,6 +18,7 @@ const Cabinet = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [user, setUser] = useState({});
   const [img, setImg] = useState(null);
+  const [subscription, setSubscription] = useState(null);
   const [isImgDelete, setIsImgDelete] = useState(false);
 
   const handleToggleEditMode = () => {
@@ -37,6 +38,29 @@ const Cabinet = () => {
       setImg(url);
     });
   }, [isImgDelete]);
+
+  useEffect(() => {
+    const fetchSubscription = async () => {
+      try {
+        const { subscription } = await getSubscription();
+        setSubscription(subscription);
+        console.log(subscription);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSubscription();
+  }, []);
+
+  const buySubs = async () => {
+    try {
+      let subs = 'fullPackage';
+      const response = buySubscription(subs);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -81,7 +105,7 @@ const Cabinet = () => {
                 />
               </button>
             </div>
-            <div className={styles.text}>Базовый аккаунт</div>
+            <div className={styles.text}>{subscription}</div>
           </div>
           <div className={styles.premium}>
             <div className={styles.premiumActive}>
@@ -125,7 +149,7 @@ const Cabinet = () => {
                 При активации дает возможность просматривать контент на странице «Инвестиции»
               </div>
             </div>
-            <div className={styles.premiumItem}>
+            <button className={styles.premiumItem} onClick={buySubs}>
               <div className={styles.premiumTop}>
                 <div className={styles.premiumLeft}>
                   <img src={premiumWhite} width={20} height={15} alt="premium-pro" />
@@ -140,7 +164,7 @@ const Cabinet = () => {
                 При активации открывается доступ
                 <span className={styles.premiumBold}>ко всем функциям</span>нашего сервиса
               </div>
-            </div>
+            </button>
           </div>
           <div className={styles.seminars}>
             <div className={styles.seminarsTop}>

@@ -33,8 +33,13 @@ const deleteProfile = async () => {
   return data;
 };
 
-const getSeminars = async () => {
-  const { data } = await authClient().delete(`profile/seminars`);
+const getSubscription = async () => {
+  const { data } = await authClient().get(`subscription`);
+  return data;
+};
+
+const buySubscription = async () => {
+  const { data } = await authClient().get(`subscription/buy?subscription=fullPackage`);
   return data;
 };
 
@@ -45,5 +50,6 @@ export {
   getProfile,
   updateProfile,
   deleteProfile,
-  getSeminars,
+  getSubscription,
+  buySubscription,
 };
