@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import styles from '../adminSignals/createSignal/createSignal.module.scss';
 import WaveFormLocal from '../adminSignals/waveSurfer/WafeSurferLocal';
-import WaveFormUrl from '../adminSignals/waveSurfer/WaveSurferUrl';
+import WaveFormUrl from '../../components/audio-player/Waveform';
 import recorder from '../adminSignals/useRecorder/useRecorder';
 import AudioRecorder from '../adminSignals/audio/AudioRecorder';
 import trash from '@assets/delete.svg';
@@ -50,7 +50,9 @@ const AdminSignal = () => {
     const fetchImg = async () => {
       try {
         const { data } = await getImg(id);
-        setImageUrl(data);
+        const blob = new Blob([data]);
+        const url = URL.createObjectURL(blob);
+        setImageUrl(url);
       } catch (error) {
         console.error(error);
       }
@@ -63,7 +65,9 @@ const AdminSignal = () => {
     const fetchVoice = async () => {
       try {
         const { data } = await getVoice(id);
-        setVoiceUrl(data);
+        const blob = new Blob([data]);
+        var url = URL.createObjectURL(blob);
+        setVoiceUrl(url);
       } catch (error) {
         console.error(error);
       }
@@ -75,6 +79,7 @@ const AdminSignal = () => {
   const handleDeleteVoice = () => {
     setVoiceUrl(null);
     setVoiceLocal(null);
+    setIsVoiceChange(true);
   };
 
   const handleDeleteImg = () => {
@@ -128,7 +133,8 @@ const AdminSignal = () => {
 
     if (voiceLocal) {
       try {
-        await createVoice({ id, voiceUrl });
+        console.log(id, voiceLocal);
+        await createVoice(id, voiceLocal);
       } catch (error) {
         console.error('Ошибка при отправке аудио:', error);
       }
@@ -197,7 +203,7 @@ const AdminSignal = () => {
       </div>
       {voiceUrl && (
         <div className={styles.voiceWrapper}>
-          <WaveFormUrl voiceUrl={voiceUrl} />
+          <WaveFormUrl audio={voiceUrl} uid={id} />
           <button className={styles.deleteVoice} onClick={handleDeleteVoice}>
             <img src={trash} alt="delete-voice" />
           </button>

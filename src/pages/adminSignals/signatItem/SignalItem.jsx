@@ -15,7 +15,7 @@ const SignalItem = ({ item, setIsDelete }) => {
 
   const handleDeleteItem = async (id) => {
     try {
-      const response = await deleteSignal(id);
+      await deleteSignal(id);
       //после удаление перерисовываем страницу с обновленным массивом
       setIsDelete((prev) => !prev);
     } catch (error) {

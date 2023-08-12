@@ -2,12 +2,12 @@ import { Link, NavLink } from 'react-router-dom';
 import cn from 'classnames';
 
 import styles from './header.module.scss';
-import logo from '../../../assets/logo.svg';
-import { ReactComponent as News } from '../../../assets/news.svg';
-import { ReactComponent as Signals } from '../../../assets/signals.svg';
-import { ReactComponent as Investments } from '../../../assets/investments.svg';
-import { ReactComponent as Seminars } from '../../../assets/seminars.svg';
-import { ReactComponent as Profile } from '../../../assets/profile.svg';
+import logo from '@assets/logo.svg';
+import { ReactComponent as News } from '@assets/news.svg';
+import { ReactComponent as Signals } from '@assets/signals.svg';
+import { ReactComponent as Investments } from '@assets/investments.svg';
+import { ReactComponent as Seminars } from '@assets/seminars.svg';
+import { ReactComponent as Profile } from '@assets/profile.svg';
 
 const links = [
   { href: '/', name: 'Новости', svg: <News /> },

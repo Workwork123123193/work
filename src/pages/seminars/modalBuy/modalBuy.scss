@@ -1,4 +1,12 @@
+.ReactModal__Overlay {
+  transition: all 0.3s;
+}
+
 .ReactModal__Overlay.ReactModal__Overlay--after-open {
   background: rgba(0, 0, 0, 0.8) !important;
   z-index: 999;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
 }

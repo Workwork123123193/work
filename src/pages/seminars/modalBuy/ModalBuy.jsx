@@ -7,16 +7,10 @@ import ModalSuccess from '../modalSuccess/ModalSuccess';
 import dollar from '@assets/dollar.svg';
 import metamask from '@assets/metamask.svg';
 
-const ModalBuy = ({ isOpen, handleCloseModal }) => {
-  const [isOpenSuccess, setIsOpenSuccess] = useState(false);
-
+const ModalBuy = ({ isOpen, handleCloseModal, handleCloseSuccess }) => {
   const handleToggleModals = () => {
-    handleCloseModal(false);
-    setIsOpenSuccess(true);
-  };
-
-  const handleCloseSuccess = () => {
-    setIsOpenSuccess(false);
+    handleCloseModal();
+    handleCloseSuccess();
   };
 
   return (
@@ -39,7 +33,6 @@ const ModalBuy = ({ isOpen, handleCloseModal }) => {
           </button>
         </div>
       </Modal>
-      <ModalSuccess isOpenSuccess={isOpenSuccess} handleCloseSuccess={handleCloseSuccess} />
     </div>
   );
 };

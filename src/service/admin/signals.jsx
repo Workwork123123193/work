@@ -43,7 +43,8 @@ const deleteImg = async (id) => {
   return data;
 };
 
-const createVoice = async ({ id, voiceUrl }) => {
+const createVoice = async (id, voiceUrl) => {
+  console.log(id, voiceUrl);
   let form = new FormData();
   form.append('file', voiceUrl);
   const data = await authClientPostMedia().post(`signal/${id}/voice`, form);
@@ -56,6 +57,7 @@ const getVoice = async (id) => {
 };
 
 const deleteVoice = async (id) => {
+  console.log(id);
   const data = await authClient().delete(`signal/${id}/voice`);
   return data;
 };
