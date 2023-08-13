@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import styles from './register.module.scss';
 import { fetchRegistration } from '@redux/user/userSlice';
 
-const Register = ({ setActiveTab1, setActiveTab2 }) => {
+const Register = ({ setActiveTab1, setActiveTab2, setIsConfirm, setConfirmLink }) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -31,9 +31,11 @@ const Register = ({ setActiveTab1, setActiveTab2 }) => {
         if (data.error?.message?.includes('409')) {
           toast('Такой пользователь уже существует');
         } else {
+          setConfirmLink(data.payload.confirmLink);
           toast('Подтвердите почту');
+          setActiveTab2('null');
+          setIsConfirm(true);
           reset();
-          onLoginToggle();
         }
       })
       .catch((error) => {
