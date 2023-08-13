@@ -1,4 +1,4 @@
-import { authClient, authClientPostMedia, authClientGetMedia } from '../client';
+import { client, authClient, authClientPostMedia, authClientGetMedia } from '../client';
 
 const getAvatar = async () => {
   const { data } = await authClientGetMedia().get(`profile/avatar`);
@@ -39,7 +39,12 @@ const getSubscription = async () => {
 };
 
 const buySubscription = async () => {
-  const { data } = await authClient().get(`subscription/buy?subscription=fullPackage`);
+  const { data } = await authClient().post(`subscription/buy?subscription=fullPackage`);
+  return data;
+};
+
+const confirmation = async (confirmLink, codeConfirm) => {
+  const data = await client.post(`${confirmLink}${codeConfirm}`);
   return data;
 };
 
@@ -52,4 +57,5 @@ export {
   deleteProfile,
   getSubscription,
   buySubscription,
+  confirmation,
 };
