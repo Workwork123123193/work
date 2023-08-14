@@ -1,23 +1,27 @@
 import { useState, useEffect } from 'react';
-import cn from 'classnames';
 
 import styles from './cabinet.module.scss';
+import SeminarItem from '../seminarItem/SeminarItem';
 import EditCabinet from '../editCabinet/EditCabinet';
-import { getAvatar, getProfile, getSubscription, buySubscription } from '@service/user/profile';
 import avatarPng from '@assets/user.png';
 import avatarWebp from '@assets/user.webp';
 import settings from '@assets/settings-violet.svg';
-import clockWhite from '@assets/clock-white.svg';
-import usersWhite from '@assets/users-white.svg';
-import calendarWhite from '@assets/calendar-white.svg';
 import arrow from '@assets/arrow-down.svg';
 import premiumWhite from '@assets/premium-white.svg';
 import premiumViolet from '@assets/premium-violet.svg';
+import {
+  getAvatar,
+  getProfile,
+  getSeminars,
+  getSubscription,
+  buySubscription,
+} from '@service/user/profile';
 
 const Cabinet = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [user, setUser] = useState({});
   const [img, setImg] = useState(null);
+  const [seminars, setSeminars] = useState([]);
   const [subscription, setSubscription] = useState(null);
   const [isImgDelete, setIsImgDelete] = useState(false);
 
@@ -31,6 +35,12 @@ const Cabinet = () => {
     });
   }, []);
 
+  useEffect(() => {
+    getSeminars().then((data) => {
+      setSeminars(data);
+    });
+  }, []);
+  console.log(seminars);
   useEffect(() => {
     getAvatar().then((data) => {
       const blob = new Blob([data]);
@@ -169,33 +179,12 @@ const Cabinet = () => {
           <div className={styles.seminars}>
             <div className={styles.seminarsTop}>
               <h3 className={styles.seminarsTitle}>Запись на семинары</h3>
-              <span className={styles.seminarsCount}>(1)</span>
+              <span className={styles.seminarsCount}>({seminars.length})</span>
             </div>
             <div className={styles.seminarsItems}>
-              <div className={cn(styles.seminarsItem, styles.netologia)}>
-                <h3 className={styles.seminarsItemTitle}>Нетология</h3>
-                <div className={styles.seminarsItemInfos}>
-                  <div className={styles.seminarsItemInfo}>
-                    <img src={calendarWhite} width={12} height={13} alt="date" />
-                    <span className={styles.seminarsItemSpan}>14 мая 2023</span>
-                  </div>
-                  <div className={styles.seminarsItemInfo}>
-                    <img src={clockWhite} width={13} height={13} alt="clock" />
-                    <span className={styles.seminarsItemSpan}>17:00</span>
-                  </div>
-                  <div className={styles.seminarsItemInfo}>
-                    <img src={usersWhite} width={20} height={13} alt="users" />
-                    <span className={styles.seminarsItemSpan}>30</span>
-                  </div>
-                </div>
-                <a
-                  className={styles.seminarsItemLink}
-                  href="http://"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  Перейти на семинар
-                </a>
-              </div>
+              {seminars.map((seminar) => {
+                return <SeminarItem key={seminar.id} {...seminar} />;
+              })}
             </div>
           </div>
         </>
