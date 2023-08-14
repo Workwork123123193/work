@@ -1,19 +1,48 @@
-import styles from './seminarsItem.module.scss';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
+import styles from './seminarsItem.module.scss';
 import { getMonthName } from '../utils/getMonthName';
 import { domParser } from '../utils/domParser';
 import { getTimes } from '../utils/getTimes';
+import { buySeminar } from '@service/user/seminars';
 import calendar from '@assets/calendar-violet.svg';
 import clock from '@assets/clock-violet.svg';
 import users from '@assets/users-violet.svg';
 
-const SeminarItem = ({ imageUrl, title, description, date, seats, members, price, setIsOpen }) => {
+const SeminarItem = ({
+  imageUrl,
+  title,
+  description,
+  date,
+  seats,
+  members,
+  price,
+  id,
+  setIsOpenBuy,
+  setIsWasBuy,
+}) => {
+  const { data } = useSelector(({ user }) => user);
   const dateTime = new Date(date);
   const monthIndex = dateTime.getUTCMonth();
   const { day, year, time } = getTimes(dateTime);
 
-  const handleBuySeminar = () => {
-    setIsOpen(true);
+  const handleBuySeminar = async () => {
+    if (!data) {
+      toast('Вы не авторизованы');
+      return;
+    }
+
+    try {
+      await buySeminar(id);
+      setIsWasBuy((prev) => !prev);
+      toast('Семинар успешно куплен');
+    } catch (error) {
+      if (error.response.data.statusCode === 409) {
+        toast('Вы уже купили этот семинар');
+      }
+    }
+    // setIsOpenBuy(true);
   };
 
   return (

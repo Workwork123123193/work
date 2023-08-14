@@ -119,10 +119,10 @@ const Cabinet = () => {
               </div>
               <img src={arrow} width={20} height={10} alt="arrow" />
             </div>
-            <div className={styles.premiumItem}>
+            <button className={styles.premiumItem}>
               <div className={styles.premiumTop}>
                 <div className={styles.premiumLeft}>
-                  <img src={premiumViolet} width={20} height={15} alt="premium" />
+                  <img src={premiumViolet} width={23} height={17} alt="premium" />
                   <h3 className={styles.premiumTitle}>Трейдер</h3>
                 </div>
                 <div className={styles.premiumRight}>
@@ -133,11 +133,11 @@ const Cabinet = () => {
               <div className={styles.premiumBottom}>
                 При активации дает возможность просматривать контент на странице «Сигналы»
               </div>
-            </div>
-            <div className={styles.premiumItem}>
+            </button>
+            <button className={styles.premiumItem}>
               <div className={styles.premiumTop}>
                 <div className={styles.premiumLeft}>
-                  <img src={premiumViolet} width={20} height={15} alt="premium" />
+                  <img src={premiumViolet} width={23} height={17} alt="premium" />
                   <h3 className={styles.premiumTitle}>Инвестор</h3>
                 </div>
                 <div className={styles.premiumRight}>
@@ -148,11 +148,11 @@ const Cabinet = () => {
               <div className={styles.premiumBottom}>
                 При активации дает возможность просматривать контент на странице «Инвестиции»
               </div>
-            </div>
+            </button>
             <button className={styles.premiumItem} onClick={buySubs}>
               <div className={styles.premiumTop}>
                 <div className={styles.premiumLeft}>
-                  <img src={premiumWhite} width={20} height={15} alt="premium-pro" />
+                  <img src={premiumWhite} width={23} height={17} alt="premium-pro" />
                   <h3 className={styles.premiumTitle}>PRO</h3>
                 </div>
                 <div className={styles.premiumRight}>

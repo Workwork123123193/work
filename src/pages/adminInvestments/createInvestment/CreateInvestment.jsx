@@ -5,7 +5,7 @@ import styles from '../../adminSignals/createSignal/createSignal.module.scss';
 import WaveFormLocal from '../../../components/audio-player/WafeSurferLocal';
 import recorder from '../../../components/useRecorder/useRecorder';
 import AudioRecorder from '../../../components/audio/AudioRecorder';
-import { createSignall, createImg, createVoice } from '@service/admin/signals';
+import { createInvestment, createImg, createVoice } from '@service/admin/investments';
 import trash from '@assets/delete.svg';
 import change from '@assets/change-img.svg';
 
@@ -49,7 +49,7 @@ const CreateInvestment = ({ setTabs }) => {
       description: inputDesk,
     };
 
-    const { id } = await createSignall(signal);
+    const { id } = await createInvestment(signal);
 
     if (imageUrl) {
       try {
@@ -60,8 +60,9 @@ const CreateInvestment = ({ setTabs }) => {
     }
 
     if (voiceUrl) {
+      console.log(voiceUrl);
       try {
-        await createVoice({ id, voiceUrl });
+        await createVoice(id, voiceUrl);
       } catch (error) {
         console.error('Ошибка при отправке аудио:', error);
       }

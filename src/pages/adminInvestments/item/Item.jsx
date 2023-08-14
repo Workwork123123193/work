@@ -7,7 +7,7 @@ import { getTimeInMoscowTimeZone } from '../../adminSignals/utils/getTime';
 import edit from '@assets/edit.svg';
 import trash from '@assets/delete.svg';
 import clock from '@assets/clock-violet.svg';
-import { deleteSignal, getImg, getVoice } from '@service/admin/signals';
+import { deleteInvestment, getImg, getVoice } from '@service/admin/investments';
 
 const Item = ({ item, setIsDelete }) => {
   const [img, setImg] = useState(null);
@@ -15,7 +15,7 @@ const Item = ({ item, setIsDelete }) => {
 
   const handleDeleteItem = async (id) => {
     try {
-      await deleteSignal(id);
+      await deleteInvestment(id);
       setIsDelete((prev) => !prev);
     } catch (error) {
       console.log(error);

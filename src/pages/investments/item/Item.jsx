@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import styles from './item.module.scss';
+import styles from '../../signals/item/item.module.scss';
 import Waveform from '../../../components/audio-player/Waveform';
-import { getImg, getVoice } from '@service/admin/signals';
+import { getImg, getVoice } from '@service/admin/investments';
 import logo from '@assets/logo.svg';
 import clock from '@assets/clock-violet.svg';
 

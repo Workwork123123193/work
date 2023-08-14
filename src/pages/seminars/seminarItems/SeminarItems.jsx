@@ -8,11 +8,12 @@ import { getSeminars } from '@service/user/seminars';
 
 const SeminarItems = () => {
   const [seminars, setSeminars] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenBuy, setIsOpenBuy] = useState(false);
   const [isOpenSuccess, setIsOpenSuccess] = useState(false);
+  const [isWasBuy, setIsWasBuy] = useState(false);
 
   const handleCloseModal = () => {
-    setIsOpen(false);
+    setIsOpenBuy(false);
   };
 
   const handleCloseSuccess = () => {
@@ -30,17 +31,24 @@ const SeminarItems = () => {
     };
 
     fetchData();
-  }, []);
+  }, [isWasBuy]);
 
   return (
     <div className={styles.seminars}>
       {seminars.length
         ? seminars.map((item) => {
-            return <SeminarItem key={item.id} {...item} setIsOpen={setIsOpen} />;
+            return (
+              <SeminarItem
+                key={item.id}
+                {...item}
+                setIsOpenBuy={setIsOpenBuy}
+                setIsWasBuy={setIsWasBuy}
+              />
+            );
           })
         : null}
       <ModalBuy
-        isOpen={isOpen}
+        isOpenBuy={isOpenBuy}
         handleCloseModal={handleCloseModal}
         isOpenSuccess={isOpenSuccess}
         handleCloseSuccess={handleCloseSuccess}

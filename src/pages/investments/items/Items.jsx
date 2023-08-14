@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import styles from './items.module.scss';
+import styles from '../../signals/items/items.module.scss';
 import Item from '../item/Item';
-import { getSignals } from '@service/admin/signals';
+import { getInvestments } from '@service/admin/investments';
 
 const Items = () => {
   const [data, setData] = useState([]);
@@ -10,7 +10,7 @@ const Items = () => {
   useEffect(() => {
     const fetchSignals = async () => {
       try {
-        const { items } = await getSignals();
+        const { items } = await getInvestments();
         setData(items);
       } catch (error) {
         console.log(error);

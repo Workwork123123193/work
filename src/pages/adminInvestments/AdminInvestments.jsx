@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Actions from './actions/Actions';
 import CreateInvestment from './createInvestment/CreateInvestment';
 import Items from './items/Items';
-import { getSignals } from '@service/admin/signals';
+import { getInvestments } from '@service/admin/investments';
 
 const AdminSignals = () => {
   const [data, setData] = useState([]);
@@ -15,7 +15,7 @@ const AdminSignals = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getSignals();
+        const response = await getInvestments();
         setData(response);
       } catch (error) {
         console.log(error);

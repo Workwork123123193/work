@@ -1,0 +1,13 @@
+.blank {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    border-radius: 30px;
+  }
+
+  img:not(:last-child) {
+    margin-bottom: 30px;
+  }
+}

@@ -1,5 +1,4 @@
 import styles from '../../adminSignals/signalItems/signalItems.module.scss';
-
 import Item from '../item/Item';
 
 const SignalItems = ({ items, setIsDelete }) => {
@@ -9,7 +8,7 @@ const SignalItems = ({ items, setIsDelete }) => {
         ? items.map((item) => {
             return <Item key={item.id} item={item} setIsDelete={setIsDelete} />;
           })
-        : 'Сигналов нету'}
+        : 'Инвестиций нету'}
     </div>
   );
 };

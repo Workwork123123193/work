@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import Modal from 'react-modal';
 
 import styles from './modalBuy.module.scss';
 import './modalBuy.scss';
-import ModalSuccess from '../modalSuccess/ModalSuccess';
 import dollar from '@assets/dollar.svg';
 import metamask from '@assets/metamask.svg';
 
-const ModalBuy = ({ isOpen, handleCloseModal, handleCloseSuccess }) => {
+const ModalBuy = ({ isOpenBuy, handleCloseModal, handleCloseSuccess }) => {
   const handleToggleModals = () => {
     handleCloseModal();
     handleCloseSuccess();
@@ -16,7 +14,7 @@ const ModalBuy = ({ isOpen, handleCloseModal, handleCloseSuccess }) => {
   return (
     <div>
       <Modal
-        isOpen={isOpen}
+        isOpen={isOpenBuy}
         onRequestClose={handleCloseModal}
         contentLabel="Способ оплаты"
         className={styles.content}>

@@ -134,6 +134,7 @@
 
 .premiumTitle {
   margin-left: 10px;
+  transform: translateY(1px);
   font-weight: 700;
   font-size: 18px;
   line-height: 25px;
@@ -144,6 +145,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 25px;
+  font-family: 'Montserrat', sans-serif;
   color: var(--violet);
 }
 
@@ -155,6 +157,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
+  color: var(--gray);
 }
 
 .seminarsTop {
