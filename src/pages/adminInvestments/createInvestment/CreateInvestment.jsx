@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-import styles from './createSignal.module.scss';
+import styles from '../../adminSignals/createSignal/createSignal.module.scss';
 
 import WaveFormLocal from '../../../components/audio-player/WafeSurferLocal';
 import recorder from '../../../components/useRecorder/useRecorder';
@@ -9,7 +9,7 @@ import { createSignall, createImg, createVoice } from '@service/admin/signals';
 import trash from '@assets/delete.svg';
 import change from '@assets/change-img.svg';
 
-const CreateSignal = ({ setTabs }) => {
+const CreateInvestment = ({ setTabs }) => {
   const imgRef = useRef();
   const [imgForViev, setImgForViev] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -67,13 +67,13 @@ const CreateSignal = ({ setTabs }) => {
       }
     }
 
-    setTabs('signals');
+    setTabs('investments');
   };
 
   return (
     <>
-      <h2 className={styles.title}>Новый сигнал</h2>
-      <div className={styles.imgTitle}>Изображение сигнала</div>
+      <h2 className={styles.title}>Новая инвестиция</h2>
+      <div className={styles.imgTitle}>Изображение инвестиции</div>
       <div className={styles.imgWrapper}>
         {imgForViev && (
           <div className={styles.imgLoaded}>
@@ -113,7 +113,7 @@ const CreateSignal = ({ setTabs }) => {
         </div>
       )}
       <div className={styles.header}>
-        <div className={styles.headerTitle}>Заголовок сигнала</div>
+        <div className={styles.headerTitle}>Заголовок инвестиции</div>
         <input
           className={styles.headerInput}
           value={inputHeader}
@@ -124,24 +124,24 @@ const CreateSignal = ({ setTabs }) => {
         />
       </div>
       <div className={styles.description}>
-        <div className={styles.descriptionTitle}>Описание сигнала</div>
+        <div className={styles.descriptionTitle}>Описание инвестиции</div>
         <textarea
           className={styles.descriptionInput}
           value={inputDesk}
           onChange={(e) => setInputDesk(e.target.value)}
           name="description"
-          placeholder="Введите описание сигнала"></textarea>
+          placeholder="Введите описание инвестиции"></textarea>
       </div>
       <div className={styles.bottom}>
         <button className={styles.bottomCancel} onClick={() => setTabs('signals')}>
           Отмена
         </button>
         <button className={styles.bottomAdd} onClick={() => sendSignal()}>
-          Добавить сигнал
+          Добавить инвестицию
         </button>
       </div>
     </>
   );
 };
 
-export default CreateSignal;
+export default CreateInvestment;

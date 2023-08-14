@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import styles from '../adminSignals/createSignal/createSignal.module.scss';
-import WaveFormLocal from '../adminSignals/waveSurfer/WafeSurferLocal';
+import WaveFormLocal from '../../components/audio-player/WafeSurferLocal';
 import WaveFormUrl from '../../components/audio-player/Waveform';
-import recorder from '../adminSignals/useRecorder/useRecorder';
-import AudioRecorder from '../adminSignals/audio/AudioRecorder';
+import recorder from '../../components/useRecorder/useRecorder';
+import AudioRecorder from '../../components/audio/AudioRecorder';
 import trash from '@assets/delete.svg';
 import change from '@assets/change-img.svg';
 import {

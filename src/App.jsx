@@ -55,7 +55,7 @@ function App() {
               { path: '/signals', component: <AdminSignals /> },
               { path: '/signal/:id', component: <AdminSignal /> },
               { path: '/seminars', component: <AdminSeminars /> },
-              { path: '/seminar:id', component: <AdminSeminar /> },
+              { path: '/seminar/:id', component: <AdminSeminar /> },
               { path: '/investments', component: <AdminInvestments /> },
               { path: '/users', component: <AdminUsers /> },
               { path: '*', component: <NotFound /> },

@@ -1,22 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './signalItem.module.scss';
+import styles from '../../adminSignals/signatItem/signalItem.module.scss';
 import Waveform from '../../../components/audio-player/Waveform';
-import { getTimeInMoscowTimeZone } from '../utils/getTime';
+import { getTimeInMoscowTimeZone } from '../../adminSignals/utils/getTime';
 import edit from '@assets/edit.svg';
 import trash from '@assets/delete.svg';
 import clock from '@assets/clock-violet.svg';
 import { deleteSignal, getImg, getVoice } from '@service/admin/signals';
 
-const SignalItem = ({ item, setIsDelete }) => {
+const Item = ({ item, setIsDelete }) => {
   const [img, setImg] = useState(null);
   const [voiceUrl, setVoiceUrl] = useState(null);
 
   const handleDeleteItem = async (id) => {
     try {
       await deleteSignal(id);
-      //после удаление перерисовываем страницу с обновленным массивом
       setIsDelete((prev) => !prev);
     } catch (error) {
       console.log(error);
@@ -79,4 +78,4 @@ const SignalItem = ({ item, setIsDelete }) => {
   );
 };
 
-export default SignalItem;
+export default Item;

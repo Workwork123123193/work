@@ -8,7 +8,7 @@ const SeminarItems = ({ items, setIsDelete }) => {
         ? items.map((item) => {
             return <SeminarItem key={item.title} item={item} setIsDelete={setIsDelete} />;
           })
-        : 'loading'}
+        : 'Семинаров нету'}
     </div>
   );
 };

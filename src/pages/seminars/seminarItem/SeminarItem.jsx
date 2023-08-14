@@ -1,23 +1,16 @@
 import styles from './seminarsItem.module.scss';
 
 import { getMonthName } from '../utils/getMonthName';
+import { domParser } from '../utils/domParser';
+import { getTimes } from '../utils/getTimes';
 import calendar from '@assets/calendar-violet.svg';
 import clock from '@assets/clock-violet.svg';
 import users from '@assets/users-violet.svg';
 
 const SeminarItem = ({ imageUrl, title, description, date, seats, members, price, setIsOpen }) => {
-  // const parser = new DOMParser();
-  // const doc = parser.parseFromString(description, 'text/html');
-
-  // const paragraph = doc.querySelector('p').textContent;
-  // const listItems = Array.from(doc.querySelectorAll('li')).map((li) => li.textContent);
   const dateTime = new Date(date);
-  const day = dateTime.getDate() - 1;
   const monthIndex = dateTime.getUTCMonth();
-  const month = getMonthName(monthIndex);
-  const year = dateTime.getFullYear();
-  const options = { timeZone: 'UTC', hour12: false };
-  const time = dateTime.toLocaleTimeString('en-US', options).substring(0, 5);
+  const { day, year, time } = getTimes(dateTime);
 
   const handleBuySeminar = () => {
     setIsOpen(true);
@@ -34,7 +27,7 @@ const SeminarItem = ({ imageUrl, title, description, date, seats, members, price
           <div className={styles.iconsItem}>
             <img src={calendar} width={14} height={15} alt="date" />
             <span className={styles.iconsSpan}>
-              {day} {month} {year} {time}
+              {day} {getMonthName(monthIndex)} {year}
             </span>
           </div>
           <div className={styles.iconsItem}>
@@ -46,23 +39,20 @@ const SeminarItem = ({ imageUrl, title, description, date, seats, members, price
             <span className={styles.iconsSpan}>{members}</span>
           </div>
         </div>
-        <p className={styles.p}>{description}</p>
+        <p className={styles.p}>На курсе вы узнаете</p>
         <ul className={styles.ul}>
-          {/* {listItems.map((item, index) => {
+          {domParser(description).map((item, index) => {
             return (
               <li className={styles.li} key={index}>
                 {item}
               </li>
             );
-          })} */}
-          <li className={styles.li}>Lorem ipsum dolor sit amet</li>
-          <li className={styles.li}>Lorem ipsum dolor sit amet amet</li>
-          <li className={styles.li}>Lorem ipsum dolor sit amet amet amet</li>
+          })}
         </ul>
         <div className={styles.bottom}>
           <div className={styles.bottomItem}>
             <span className={styles.bottomSpan}>Стоимость</span>
-            <span className={styles.bottomViolet}>{price}</span>
+            <span className={styles.bottomViolet}>{price + ' руб'}</span>
           </div>
           <div className={styles.bottomItem}>
             <span className={styles.bottomSpan}>Свободных мест</span>
