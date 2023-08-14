@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './seminarItem.module.scss';
-import { getImg, deleteSeminar } from '@service/admin/seminars';
+import { deleteSeminar } from '@service/admin/seminars';
+import { getMonthName } from '../../seminars/utils/getMonthName';
+import { domParser } from '../../seminars/utils/domParser';
+import { getTimes } from '../../seminars/utils/getTimes';
 import edit from '@assets/edit.svg';
 import trash from '@assets/delete.svg';
 import clock from '@assets/clock-violet.svg';
@@ -11,73 +13,62 @@ import usersWhite from '@assets/users-white.svg';
 import usersViolet from '@assets/users-violet.svg';
 
 const SignalItem = ({ item, setIsDelete }) => {
-  const [img, setImg] = useState(null);
+  const dateTime = new Date(item.date);
+  const monthIndex = dateTime.getUTCMonth();
+  const { day, year, time } = getTimes(dateTime);
 
   const handleDeleteItem = async (id) => {
-    // try {
-    //   const response = await deleteSeminar(id);
-    //   setIsDelete((prev) => !prev);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      await deleteSeminar(id);
+      setIsDelete((prev) => !prev);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  // useEffect(() => {
-  //   const fetchImg = async () => {
-  //     try {
-  //       const { data } = await getImg(item.id);
-  //       const blob = new Blob([data]);
-  //       const url = URL.createObjectURL(blob);
-
-  //       //   var arrayBufferView = new Uint8Array(data);
-  //       //   var blob = new Blob([arrayBufferView], { type: 'image/jpeg' });
-  //       //   var urlCreator = window.URL || window.webkitURL;
-  //       //   var imageUrl = urlCreator.createObjectURL(blob);
-  //       //   console.log(imageUrl);
-  //       setImg(url);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchImg();
-  // }, [item.id]);
 
   return (
     <div key={item.id} className={styles.seminar}>
       <div className={styles.imgWrapper}>
-        {img ? <img src={img} width={180} height={114} loading="lazy" alt="Image" /> : ''}
+        {item.imageUrl && (
+          <img src={item.imageUrl} width={180} height={114} loading="lazy" alt="img" />
+        )}
       </div>
       <h3 className={styles.title}>{item.title}</h3>
       <div className={styles.info}>
         <div className={styles.icons}>
           <div className={styles.iconsItem}>
             <img src={calendar} width={14} height={15} alt="date" />
-            <span className={styles.iconsSpan}>14 мая 2023</span>
+            <span className={styles.iconsSpan}>
+              {day} {getMonthName(monthIndex)} {year}
+            </span>
           </div>
           <div className={styles.iconsItem}>
             <img src={clock} width={16} height={15} alt="clock" />
-            <span className={styles.iconsSpan}>17:00</span>
+            <span className={styles.iconsSpan}>{time}</span>
           </div>
           <div className={styles.iconsItem}>
             <img src={usersViolet} width={22} height={15} alt="users" />
-            <span className={styles.iconsSpan}>30</span>
+            <span className={styles.iconsSpan}>{item.members}</span>
           </div>
         </div>
-        <p className={styles.p}>На курсе вы научитесь</p>
+        <p className={styles.p}>На курсе вы узнаете</p>
         <ul className={styles.ul}>
-          <li className={styles.li}>Почему традиционные вложения больше не работают</li>
-          <li className={styles.li}>Что сегодня не так с банками и недвижимостью</li>
-          <li className={styles.li}>С какой суммы можно начать инвестировать</li>
+          {domParser(item.description).map((item, index) => {
+            return (
+              <li className={styles.li} key={index}>
+                {item}
+              </li>
+            );
+          })}
         </ul>
         <div className={styles.bottom}>
           <div className={styles.bottomItem}>
             <span className={styles.bottomSpan}>Стоимость</span>
-            <span className={styles.bottomViolet}>Бесплатно</span>
+            <span className={styles.bottomViolet}>{item.price + ' руб'}</span>
           </div>
           <div className={styles.bottomItem}>
             <span className={styles.bottomSpan}>Свободных мест</span>
-            <span className={styles.bottomViolet}>24</span>
+            <span className={styles.bottomViolet}>{item.seats}</span>
           </div>
         </div>
       </div>

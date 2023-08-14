@@ -4,10 +4,10 @@ import cn from 'classnames';
 import styles from './createSeminar.module.scss';
 import stylesImg from '../../adminSignals/createSignal/createSignal.module.scss';
 import { createSeminar, createImg } from '@service/admin/seminars';
+import { convertDateFormat } from '../utils/convertDateFormat';
 import trash from '@assets/delete.svg';
 import change from '@assets/change-img.svg';
 import arrow from '@assets/arrow-down-violet.svg';
-import { useEffect } from 'react';
 
 const CreateSeminar = ({ setTabs }) => {
   const imgRef = useRef();
@@ -21,10 +21,6 @@ const CreateSeminar = ({ setTabs }) => {
   const [cost, setCost] = useState('');
   const [seats, setSeats] = useState('');
   const [additionalInputs, setAdditionalInputs] = useState([]);
-
-  useEffect(() => {
-    console.log(date, time);
-  }, [date, time]);
 
   const handleDeleteImg = () => {
     setImageUrl(null);
@@ -49,19 +45,30 @@ const CreateSeminar = ({ setTabs }) => {
   };
 
   const sendSeminar = async () => {
+    const validDate = convertDateFormat(`${date} ${time}`);
+    const values = [paragraph, ...additionalInputs.map((input) => input.value)];
+    const htmlString = `<ul>${values.map((value) => `<li>${value}</li>`).join('')}</ul>`;
+
     const seminar = {
       title: header,
+      description: htmlString,
+      seats: +seats,
+      price: +cost,
+      date: validDate,
+      link: link,
     };
 
     const { id } = await createSeminar(seminar);
 
     if (imageUrl) {
       try {
-        const imgData = await createImg({ id, imageUrl });
+        await createImg({ id, imageUrl });
       } catch (error) {
         console.error('Ошибка при отправке изображения:', error);
       }
     }
+
+    setTabs('seminars');
   };
 
   const handleAddInput = () => {
@@ -151,7 +158,7 @@ const CreateSeminar = ({ setTabs }) => {
         </div>
       </div>
       <div className={styles.item}>
-        <div className={styles.suptitle}>На курсе вы научитесь</div>
+        <div className={styles.suptitle}>На курсе вы узнаете</div>
         <input
           className={styles.input}
           value={paragraph}
@@ -215,7 +222,7 @@ const CreateSeminar = ({ setTabs }) => {
         <button className={stylesImg.bottomCancel} onClick={() => setTabs('seminars')}>
           Отмена
         </button>
-        <button className={stylesImg.bottomAdd} onClick={() => sendSeminar()}>
+        <button className={stylesImg.bottomAdd} onClick={sendSeminar}>
           Добавить семинар
         </button>
       </div>
