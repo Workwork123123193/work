@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 
 import styles from '../../adminSignals/createSignal/createSignal.module.scss';
 
-import WaveFormLocal from '../../../components/audio-player/WafeSurferLocal';
+import WaveForm from '../../../components/audio-player/Wafeform';
 import recorder from '../../../components/useRecorder/useRecorder';
 import AudioRecorder from '../../../components/audio/AudioRecorder';
 import { createInvestment, createImg, createVoice } from '@service/admin/investments';
@@ -107,7 +107,7 @@ const CreateInvestment = ({ setTabs }) => {
       </div>
       {voiceUrl && (
         <div className={styles.voiceWrapper}>
-          <WaveFormLocal audio={voiceUrl} />
+          <WaveForm audio={voiceUrl} />
           <button className={styles.deleteVoice} onClick={handleDeleteVoice}>
             <img src={trash} alt="delete-voice" />
           </button>

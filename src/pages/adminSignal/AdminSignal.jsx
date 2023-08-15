@@ -4,8 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import styles from '../adminSignals/createSignal/createSignal.module.scss';
 import trash from '@assets/delete.svg';
 import change from '@assets/change-img.svg';
-import WaveFormLocal from '../../components/audio-player/WafeSurferLocal';
-import WaveFormUrl from '../../components/audio-player/Waveform';
+import WaveForm from '../../components/audio-player/Waveform';
 import recorder from '../../components/useRecorder/useRecorder';
 import AudioRecorder from '../../components/audio/AudioRecorder';
 import {
@@ -203,7 +202,7 @@ const AdminSignal = () => {
       </div>
       {voiceUrl && (
         <div className={styles.voiceWrapper}>
-          <WaveFormUrl audio={voiceUrl} uid={id} />
+          <WaveForm audio={voiceUrl} />
           <button className={styles.deleteVoice} onClick={handleDeleteVoice}>
             <img src={trash} alt="delete-voice" />
           </button>
@@ -211,7 +210,7 @@ const AdminSignal = () => {
       )}
       {!voiceUrl && voiceLocal && (
         <div className={styles.voiceWrapper}>
-          <WaveFormLocal audio={voiceLocal} />
+          <WaveForm audio={voiceLocal} />
           <button className={styles.deleteVoice} onClick={handleDeleteVoice}>
             <img src={trash} alt="delete-voice" />
           </button>

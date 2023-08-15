@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
-import styles from '../../styles.module.scss';
+import styles from './wafeSurfet.module.scss';
 import WaveSurfer from 'wavesurfer.js';
-import playerSvg from '@assets/player.svg';
-import pauseSvg from '@assets/pause.svg';
+import play from '@assets/player.svg';
+import pause from '@assets/pause.svg';
 
 const formWaveSurferOptions = (ref) => ({
   container: ref,
@@ -21,7 +21,7 @@ const formWaveSurferOptions = (ref) => ({
   partialRender: true,
 });
 
-export default function Waveform({ audio, uid }) {
+export default function Waveform({ audio }) {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [playing, setPlay] = useState(false);
@@ -34,7 +34,7 @@ export default function Waveform({ audio, uid }) {
     wavesurfer.current.load(audio);
 
     wavesurfer.current.on('ready', function () {
-      document.querySelector(`[data-uid='${uid}']`).textContent = minFormat(
+      document.querySelector(`[data-uid='${audio}']`).textContent = minFormat(
         wavesurfer.current.getDuration(),
       );
     });
@@ -42,7 +42,7 @@ export default function Waveform({ audio, uid }) {
     wavesurfer.current.on('audioprocess', function () {
       if (wavesurfer.current.isPlaying()) {
         var currentTime = wavesurfer.current.getCurrentTime();
-        document.querySelector(`[data-uid='${uid}']`).textContent = minFormat(currentTime);
+        document.querySelector(`[data-uid='${audio}']`).textContent = minFormat(currentTime);
       }
     });
 
@@ -52,11 +52,11 @@ export default function Waveform({ audio, uid }) {
 
     wavesurfer.current.on('click', function () {
       var currentTime = wavesurfer.current.getCurrentTime();
-      document.querySelector(`[data-uid='${uid}']`).textContent = minFormat(currentTime);
+      document.querySelector(`[data-uid='${audio}']`).textContent = minFormat(currentTime);
     });
 
     return () => wavesurfer.current.destroy();
-  }, [audio, uid]);
+  }, [audio]);
 
   const minFormat = (sec) => {
     var m = ((sec % 3600) / 60).toFixed(0).toString().padStart(2, '0');
@@ -70,19 +70,14 @@ export default function Waveform({ audio, uid }) {
   };
 
   return (
-    <>
-      <div className={styles.bAudio}>
-        <img
-          className={styles.bIcon}
-          src={playing ? pauseSvg : playerSvg}
-          onClick={handlePlayPause}
-          alt="player"
-        />
-        <div className={`${styles.bCol} ${styles.bCol_v2}`}>
-          <div id={styles.waveform} ref={waveformRef} />
-          <div className={`${styles.bText} ${styles.bText_g}`} data-uid={`${uid}`}></div>
-        </div>
+    <div className={styles.wave}>
+      <button className={styles.btn} onClick={handlePlayPause}>
+        <img src={!playing ? play : pause} width={59} height={59} alt="play" loading="lazy" />
+      </button>
+      <div className={styles.road}>
+        <div className={styles.left} id="waveform" ref={waveformRef} />
+        <div className={styles.right} data-uid={audio}></div>
       </div>
-    </>
+    </div>
   );
 }
