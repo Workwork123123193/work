@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from '../../adminSignals/signatItem/signalItem.module.scss';
-import Waveform from '../../../components/audio-player/Waveform';
-import { getTimeInMoscowTimeZone } from '../../adminSignals/utils/getTime';
 import edit from '@assets/edit.svg';
 import trash from '@assets/delete.svg';
 import clock from '@assets/clock-violet.svg';
+import Waveform from '../../../components/audio-player/Waveform';
+import { getTimeInMoscowTimeZone } from '../../adminSignals/utils/getTime';
 import { deleteInvestment, getImg, getVoice } from '@service/admin/investments';
 
 const Item = ({ item, setIsDelete }) => {
@@ -63,7 +63,7 @@ const Item = ({ item, setIsDelete }) => {
       <h3 className={styles.title}>{item.title}</h3>
       <div className={styles.desc}>{item.description}</div>
       <div className={styles.buttons}>
-        <Link to={`/signal/${item.id}`}>
+        <Link to={`/investment/${item.id}`}>
           <img src={edit} width={19} height={18} alt="edit" loading="lazy" />
         </Link>
         <button onClick={() => handleDeleteItem(item.id)}>

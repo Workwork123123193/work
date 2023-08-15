@@ -11,7 +11,7 @@ const Investments = () => {
   return (
     <section className="section">
       <div className="container">
-        {!data || data.user.subscription === 'none' ? (
+        {!data || data?.user?.subscription === 'none' ? (
           <div className={styles.blank}>
             <img src={blank1} width={523} height={613} alt="img" />
             <img src={blank2} width={523} height={313} alt="img" />

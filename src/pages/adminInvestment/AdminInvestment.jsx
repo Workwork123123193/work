@@ -9,17 +9,17 @@ import WaveFormUrl from '../../components/audio-player/Waveform';
 import recorder from '../../components/useRecorder/useRecorder';
 import AudioRecorder from '../../components/audio/AudioRecorder';
 import {
-  getSignal,
-  updateSignall,
+  getInvestment,
+  updateInvestment,
   getImg,
   createImg,
   deleteImg,
   getVoice,
   createVoice,
   deleteVoice,
-} from '@service/admin/signals';
+} from '@service/admin/investments';
 
-const AdminSignal = () => {
+const AdminInvestment = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const imgRef = useRef();
@@ -33,9 +33,9 @@ const AdminSignal = () => {
   const [isVoiceChange, setIsVoiceChange] = useState(false);
 
   useEffect(() => {
-    const fetchSignal = async () => {
+    const fetchInvestment = async () => {
       try {
-        const { title, description } = await getSignal(id);
+        const { title, description } = await getInvestment(id);
         setHeader(title);
         setDesk(description);
       } catch (error) {
@@ -43,7 +43,7 @@ const AdminSignal = () => {
       }
     };
 
-    fetchSignal();
+    fetchInvestment();
   }, [id]);
 
   useEffect(() => {
@@ -107,13 +107,13 @@ const AdminSignal = () => {
     imgRef.current.click();
   };
 
-  const saveSignal = async () => {
+  const saveInvestment = async () => {
     const signal = {
       title: inputHeader,
       description: inputDesk,
     };
 
-    await updateSignall(id, signal);
+    await updateInvestment(id, signal);
 
     if (isImgChange && imageUrl) {
       try {
@@ -148,7 +148,7 @@ const AdminSignal = () => {
       }
     }
 
-    navigate('/signals');
+    navigate('/investments');
   };
 
   const handleDeleteVoiceUrl = () => {
@@ -158,8 +158,8 @@ const AdminSignal = () => {
 
   return (
     <section className="admin-section">
-      <h2 className={styles.title}>Редактировать сигнал</h2>
-      <div className={styles.imgTitle}>Изображение сигнала</div>
+      <h2 className={styles.title}>Редактировать инвестицию</h2>
+      <div className={styles.imgTitle}>Изображение инвестиции</div>
       <div className={styles.imgWrapper}>
         {imageUrl && !isImgChange && (
           <div className={styles.imgLoaded}>
@@ -218,7 +218,7 @@ const AdminSignal = () => {
         </div>
       )}
       <div className={styles.header}>
-        <div className={styles.headerTitle}>Заголовок сигнала</div>
+        <div className={styles.headerTitle}>Заголовок инвестиции</div>
         <input
           className={styles.headerInput}
           value={inputHeader}
@@ -229,24 +229,24 @@ const AdminSignal = () => {
         />
       </div>
       <div className={styles.description}>
-        <div className={styles.descriptionTitle}>Описание сигнала</div>
+        <div className={styles.descriptionTitle}>Описание инвестиции</div>
         <textarea
           className={styles.descriptionInput}
           value={inputDesk}
           onChange={(e) => setDesk(e.target.value)}
           name="description"
-          placeholder="Введите описание сигнала"></textarea>
+          placeholder="Введите описание инвестиции"></textarea>
       </div>
       <div className={styles.bottom}>
-        <Link to={'/signals'} className={styles.bottomCancel}>
+        <Link to={'/investments'} className={styles.bottomCancel}>
           Отмена
         </Link>
-        <button className={styles.bottomAdd} onClick={() => saveSignal()}>
-          Сохранить сигнал
+        <button className={styles.bottomAdd} onClick={() => saveInvestment()}>
+          Сохранить инвестицию
         </button>
       </div>
     </section>
   );
 };
 
-export default AdminSignal;
+export default AdminInvestment;

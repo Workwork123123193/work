@@ -5,6 +5,11 @@ const getSeminars = async () => {
   return data;
 };
 
+const getSeminarUsers = async (id) => {
+  const { data } = await authClient().get(`seminar/${id}/users`);
+  return data;
+};
+
 const getSeminar = async (id) => {
   const { data } = await authClient().get(`seminar/${id}`);
   return data;
@@ -46,6 +51,7 @@ const deleteImg = async (id) => {
 
 export {
   getSeminars,
+  getSeminarUsers,
   getSeminar,
   createSeminar,
   getImg,

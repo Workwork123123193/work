@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 
 import styles from './seminarItem.module.scss';
-import { deleteSeminar } from '@service/admin/seminars';
-import { getMonthName } from '../../seminars/utils/getMonthName';
-import { domParser } from '../../seminars/utils/domParser';
-import { getTimes } from '../../seminars/utils/getTimes';
 import edit from '@assets/edit.svg';
 import trash from '@assets/delete.svg';
 import clock from '@assets/clock-violet.svg';
 import calendar from '@assets/calendar-violet.svg';
 import usersWhite from '@assets/users-white.svg';
 import usersViolet from '@assets/users-violet.svg';
+import { deleteSeminar } from '@service/admin/seminars';
+import { getMonthName } from '../../seminars/utils/getMonthName';
+import { domParser } from '../../seminars/utils/domParser';
+import { getTimes } from '../../seminars/utils/getTimes';
 
 const SignalItem = ({ item, setIsDelete }) => {
   const dateTime = new Date(item.date);
@@ -51,7 +51,7 @@ const SignalItem = ({ item, setIsDelete }) => {
             <span className={styles.iconsSpan}>{item.members}</span>
           </div>
         </div>
-        <p className={styles.p}>На курсе вы узнаете</p>
+        <p className={styles.p}>На курсе вы научитесь</p>
         <ul className={styles.ul}>
           {domParser(item.description).map((item, index) => {
             return (
@@ -73,7 +73,7 @@ const SignalItem = ({ item, setIsDelete }) => {
         </div>
       </div>
       <div className={styles.buttons}>
-        <Link>
+        <Link to={`/seminar/users/${item.id}`}>
           <img src={usersWhite} width={23} height={15} alt="users" loading="lazy" />
         </Link>
         <Link to={`/seminar/${item.id}`}>

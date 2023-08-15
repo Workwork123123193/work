@@ -3,11 +3,11 @@ import cn from 'classnames';
 
 import styles from './createSeminar.module.scss';
 import stylesImg from '../../adminSignals/createSignal/createSignal.module.scss';
-import { createSeminar, createImg } from '@service/admin/seminars';
-import { convertDateFormat } from '../utils/convertDateFormat';
 import trash from '@assets/delete.svg';
 import change from '@assets/change-img.svg';
 import arrow from '@assets/arrow-down-violet.svg';
+import { createSeminar, createImg } from '@service/admin/seminars';
+import { convertDateFormat } from '../utils/convertDateFormat';
 
 const CreateSeminar = ({ setTabs }) => {
   const imgRef = useRef();
@@ -92,6 +92,11 @@ const CreateSeminar = ({ setTabs }) => {
     setAdditionalInputs(updatedInputs);
   };
 
+  const handleRemoveInput = (id) => {
+    const updatedInputs = additionalInputs.filter((input) => input.id !== id);
+    setAdditionalInputs(updatedInputs);
+  };
+
   return (
     <>
       <h2 className={stylesImg.title}>Новый семинар</h2>
@@ -101,7 +106,7 @@ const CreateSeminar = ({ setTabs }) => {
           <div className={stylesImg.imgLoaded}>
             <img src={imgForViev} width={180} height={104} alt="load-img" />
             <button className={stylesImg.trashBtn} onClick={handleDeleteImg}>
-              <img src={trash} alt="delete-img" />
+              <img src={trash} width={16} height={20} alt="delete-img" />
             </button>
           </div>
         )}
@@ -158,7 +163,7 @@ const CreateSeminar = ({ setTabs }) => {
         </div>
       </div>
       <div className={styles.item}>
-        <div className={styles.suptitle}>На курсе вы узнаете</div>
+        <div className={styles.suptitle}>На курсе вы научитесь</div>
         <input
           className={styles.input}
           value={paragraph}
@@ -168,15 +173,21 @@ const CreateSeminar = ({ setTabs }) => {
           placeholder="Введите описание семинара"
         />
         {additionalInputs.map((input) => (
-          <input
-            key={input.id}
-            className={cn(styles.input, styles.li)}
-            value={input.value}
-            onChange={(e) => handleChangeAdditionalInput(e, input.id)}
-            type="text"
-            name="description"
-            placeholder="Введите описание семинара"
-          />
+          <div key={input.id} className={styles.additionalWrapper}>
+            <input
+              className={cn(styles.input, styles.li)}
+              value={input.value}
+              onChange={(e) => handleChangeAdditionalInput(e, input.id)}
+              type="text"
+              name="description"
+              placeholder="Введите описание семинара"
+            />
+            <button
+              className={cn(stylesImg.trashBtn, styles.additionalBtn)}
+              onClick={() => handleRemoveInput(input.id)}>
+              <img src={trash} width={16} height={20} alt="delete-description" />
+            </button>
+          </div>
         ))}
         <button className={styles.addPunct} onClick={handleAddInput}>
           <span className={styles.addPlus}>+</span>

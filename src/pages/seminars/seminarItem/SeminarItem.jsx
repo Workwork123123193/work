@@ -68,7 +68,7 @@ const SeminarItem = ({
             <span className={styles.iconsSpan}>{members}</span>
           </div>
         </div>
-        <p className={styles.p}>На курсе вы узнаете</p>
+        <p className={styles.p}>На курсе вы научитесь</p>
         <ul className={styles.ul}>
           {domParser(description).map((item, index) => {
             return (

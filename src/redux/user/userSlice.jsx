@@ -39,8 +39,8 @@ const userSlice = createSlice({
       state.status = 'pending';
       state.error = null;
     });
-    builder.addCase(fetchRegistration.fulfilled, (state, action) => {
-      state.data = action.payload;
+    builder.addCase(fetchRegistration.fulfilled, (state) => {
+      state.data = null;
       state.status = 'fulfilled';
       state.error = null;
     });

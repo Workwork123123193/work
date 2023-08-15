@@ -43,13 +43,13 @@ const CreateInvestment = ({ setTabs }) => {
     imgRef.current.click();
   };
 
-  const sendSignal = async () => {
-    const signal = {
+  const sendInvestment = async () => {
+    const investment = {
       title: inputHeader,
       description: inputDesk,
     };
 
-    const { id } = await createInvestment(signal);
+    const { id } = await createInvestment(investment);
 
     if (imageUrl) {
       try {
@@ -134,10 +134,10 @@ const CreateInvestment = ({ setTabs }) => {
           placeholder="Введите описание инвестиции"></textarea>
       </div>
       <div className={styles.bottom}>
-        <button className={styles.bottomCancel} onClick={() => setTabs('signals')}>
+        <button className={styles.bottomCancel} onClick={() => setTabs('investments')}>
           Отмена
         </button>
-        <button className={styles.bottomAdd} onClick={() => sendSignal()}>
+        <button className={styles.bottomAdd} onClick={() => sendInvestment()}>
           Добавить инвестицию
         </button>
       </div>

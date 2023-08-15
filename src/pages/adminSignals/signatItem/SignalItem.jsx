@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './signalItem.module.scss';
-import Waveform from '../../../components/audio-player/Waveform';
-import { getTimeInMoscowTimeZone } from '../utils/getTime';
 import edit from '@assets/edit.svg';
 import trash from '@assets/delete.svg';
 import clock from '@assets/clock-violet.svg';
+import Waveform from '../../../components/audio-player/Waveform';
+import { getTimeInMoscowTimeZone } from '../utils/getTime';
 import { deleteSignal, getImg, getVoice } from '@service/admin/signals';
 
 const SignalItem = ({ item, setIsDelete }) => {

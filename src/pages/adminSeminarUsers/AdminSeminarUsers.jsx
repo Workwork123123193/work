@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Actions from './actions/Actions';
-import Users from './users/Users';
+import Users from '../adminUsers/users/Users';
 import Buttons from './buttons/Buttons';
-import { getUsers } from '@service/admin/users';
+import { getSeminarUsers } from '@service/admin/seminars';
 
-const AdminUsers = () => {
+const AdminSeminarUsers = () => {
+  const { id } = useParams();
   const [data, setData] = useState([]);
   const [sort, setSort] = useState({ sort: 'date', order: 'desc' });
   const [search, setSearch] = useState('');
@@ -13,7 +15,7 @@ const AdminUsers = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getUsers();
+        const response = await getSeminarUsers(id);
         setData(response);
       } catch (error) {
         console.log(error);
@@ -21,15 +23,15 @@ const AdminUsers = () => {
     };
 
     fetchData();
-  }, [data.length]);
+  }, [id]);
 
   return (
     <section className="admin-section">
       <Actions setSort={setSort} setSearch={setSearch} count={data.length} />
-      <Users items={data} back="users" />
+      <Users items={data} />
       <Buttons />
     </section>
   );
 };
 
-export default AdminUsers;
+export default AdminSeminarUsers;

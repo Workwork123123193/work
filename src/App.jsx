@@ -19,7 +19,9 @@ const AdminSignals = lazy(() => import('./pages/adminSignals/AdminSignals'));
 const AdminSignal = lazy(() => import('./pages/adminSignal/AdminSignal'));
 const AdminSeminars = lazy(() => import('./pages/adminSeminars/AdminSeminars'));
 const AdminSeminar = lazy(() => import('./pages/adminSeminar/AdminSeminar'));
+const AdminSeminarUsers = lazy(() => import('./pages/adminSeminarUsers/AdminSeminarUsers'));
 const AdminInvestments = lazy(() => import('./pages/adminInvestments/AdminInvestments'));
+const AdminInvestment = lazy(() => import('./pages/adminInvestment/AdminInvestment'));
 const AdminUsers = lazy(() => import('./pages/adminUsers/AdminUsers'));
 
 function App() {
@@ -27,7 +29,7 @@ function App() {
 
   return (
     <>
-      {data === null || data?.user?.role === 'user' || data?.confirmLink ? (
+      {!data || data?.user?.role === 'user' ? (
         <Routes>
           <Route path="/" element={<Layout />}>
             {[
@@ -56,7 +58,9 @@ function App() {
               { path: '/signal/:id', component: <AdminSignal /> },
               { path: '/seminars', component: <AdminSeminars /> },
               { path: '/seminar/:id', component: <AdminSeminar /> },
+              { path: '/seminar/users/:id', component: <AdminSeminarUsers /> },
               { path: '/investments', component: <AdminInvestments /> },
+              { path: '/investment/:id', component: <AdminInvestment /> },
               { path: '/users', component: <AdminUsers /> },
               { path: '*', component: <NotFound /> },
             ].map(({ path, component }) => (

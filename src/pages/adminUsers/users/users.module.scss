@@ -26,7 +26,7 @@
 
   &.login {
     width: 230px;
-    transform: translateX(50px);
+    transform: translateX(60px);
   }
 
   &.subscribe {
@@ -44,34 +44,4 @@
     padding-bottom: 0;
     border-bottom: 1px solid transparent;
   }
-}
-
-.buttons {
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.cancel {
-  padding: 15px 30px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 14px;
-  background: var(--light-gray);
-  color: var(--white);
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s;
-
-  &:hover {
-    background: var(--violet);
-  }
-}
-
-.save {
-  padding: 15px 30px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 14px;
-  background: var(--violet);
-  color: var(--white);
 }

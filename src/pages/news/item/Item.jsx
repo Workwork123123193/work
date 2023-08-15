@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
 import styles from './item.module.scss';
+import noImg from '../../../assets/netologia.jpg';
+import clock from '../../../assets/clock-white.svg';
 import { getTime } from '../utils/getTime';
 import { removeUrlPrefix } from '../utils/removeUrlPrefix';
-import noImg from '../../../assets/neotologia.webp';
-import clock from '../../../assets/clock-white.svg';
 
 const Item = ({ imageUrl, title, category, source, date, id }) => {
   return (

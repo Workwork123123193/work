@@ -5,6 +5,11 @@ const getNews = async () => {
   return data;
 };
 
+const getNew = async (id) => {
+  const { data } = await authClient().get(`news/${id}`);
+  return data;
+};
+
 const createImg = async ({ id, imageUrl }) => {
   let form = new FormData();
   form.append('file', imageUrl);
@@ -17,4 +22,4 @@ const createNews = async (obj) => {
   return data;
 };
 
-export { getNews, createNews, createImg };
+export { getNews, getNew, createNews, createImg };

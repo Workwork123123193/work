@@ -269,7 +269,6 @@
   width: 100%;
   z-index: -1;
   border-radius: 1em;
-  filter: brightness(0.5);
 }
 
 .bImg.bImg_v2 {
@@ -439,12 +438,6 @@
   display: block;
 }
 
-.b-window.b-window_news {
-}
-
-.b-window.b-window_signals {
-}
-
 .b-window.b-window_investments {
   background-color: blue;
 }
@@ -546,68 +539,3 @@
   width: 100%;
   cursor: pointer;
 }
-
-/* single elements */
-
-/* DROPDOWN */
-.customDropdown {
-  position: relative;
-  width: fit-content;
-  font-size: $size_14px;
-  margin: 0 $size_30px;
-
-  .bSelectedOption {
-    padding: 0 $size_20px;
-    min-width: $size_310px;
-    height: $size_47px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: $size_10px;
-    cursor: pointer;
-
-    .bIcon.open {
-      rotate: 180deg;
-    }
-
-    .bRow .bText {
-      color: #d9d9d9;
-    }
-  }
-
-  .bOptions {
-    position: absolute;
-    top: $size_62px;
-    z-index: 10;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    width: $size_310px;
-    padding: $size_20px;
-    border-radius: $size_10px;
-
-    .bOption {
-      color: #d9d9d9;
-      border-top: 0.1em solid #f6f6f6;
-      padding: $size_15px 0;
-      cursor: pointer;
-      transition: color 0.225s ease-in-out;
-    }
-
-    .bOption:hover {
-      color: #000000;
-    }
-
-    .bOption.first {
-      padding-top: 0;
-      border: none;
-    }
-
-    .bOption.last {
-      padding-bottom: 0;
-    }
-  }
-}
-
-/* DROPDOWN */
