@@ -31,7 +31,7 @@ export default function Waveform({ audio }) {
 
     const options = formWaveSurferOptions(waveformRef.current);
     wavesurfer.current = WaveSurfer.create(options);
-    wavesurfer.current.load(audio);
+    wavesurfer.current.load(audio?.size ? URL?.createObjectURL(audio) : audio);
 
     wavesurfer.current.on('ready', function () {
       document.querySelector(`[data-uid='${audio}']`).textContent = minFormat(

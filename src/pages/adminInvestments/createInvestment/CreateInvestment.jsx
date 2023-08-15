@@ -1,8 +1,7 @@
 import { useState, useRef } from 'react';
 
 import styles from '../../adminSignals/createSignal/createSignal.module.scss';
-
-import WaveForm from '../../../components/audio-player/Wafeform';
+import WaveForm from '../../../components/audio-player/Waveform';
 import recorder from '../../../components/useRecorder/useRecorder';
 import AudioRecorder from '../../../components/audio/AudioRecorder';
 import { createInvestment, createImg, createVoice } from '@service/admin/investments';
