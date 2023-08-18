@@ -43,13 +43,20 @@ const getSubscription = async () => {
   return data;
 };
 
-const buySubscription = async () => {
-  const { data } = await authClient().post(`subscription/buy?subscription=fullPackage`);
+const buySubscription = async (subscription) => {
+  const params = new URLSearchParams();
+  params.append('subscription', subscription);
+  const data = await authClient().get(`subscription/buy?${params.toString()}e`);
   return data;
 };
 
 const confirmation = async (confirmLink, codeConfirm) => {
   const data = await client.post(`${confirmLink}${codeConfirm}`);
+  return data;
+};
+
+const restorePassword = async () => {
+  const data = await client.post(`auth/restorePassword`);
   return data;
 };
 
@@ -64,4 +71,5 @@ export {
   buySubscription,
   confirmation,
   getSeminars,
+  restorePassword,
 };

@@ -1,4 +1,4 @@
-import styles from '../../../styles.module.scss';
+import styles from '../styles.module.scss';
 import deleteSvg from '@assets/delete.svg';
 import clockWhiteSvg from '@assets/clock-white.svg';
 import defaultImage from '@assets/netologia.jpg';

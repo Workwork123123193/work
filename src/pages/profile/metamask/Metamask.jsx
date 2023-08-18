@@ -1,20 +1,22 @@
-import { useState } from 'react';
 import { ethers } from 'ethers';
 
 import styles from './metamask.module.scss';
 import foxPng from '@assets/metaMask.png';
 import foxWebp from '@assets/metaMask.webp';
+import { postLogin } from '@service/user/metamask';
 
 const Metamask = () => {
-  const [user, setUser] = useState('');
-  const [balance, setBalance] = useState(0);
+  let provider = null;
+  let signer = null;
 
   const onAuthorize = async () => {
     if (window.ethereum) {
-      window.ethereum.request({ method: 'eth_requestAccounts' }).then((response) => {
-        setUser(response[0]);
-        getBalance(response[0]);
-      });
+      provider = new ethers.BrowserProvider(window.ethereum);
+      signer = await provider.getSigner();
+      const userAddress = await signer.getAddress();
+      const signature = await getSign(userAddress);
+
+      await postLogin(userAddress, signature);
 
       window.ethereum.on('accountChanged', onAuthorize);
       window.ethereum.on('chainChanged', chainHandler);
@@ -23,17 +25,20 @@ const Metamask = () => {
     }
   };
 
-  const getBalance = (account) => {
-    window.ethereum
-      .request({ method: 'eth_getBalance', params: [account, 'latest'] })
-      .then((balance) => setBalance(ethers.formatEther(balance)));
+  const getSign = async (account) => {
+    try {
+      const message = JSON.stringify(account);
+      const signature = await signer.signMessage(message);
+      return signature;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   };
 
   const chainHandler = () => {
     window.location.reload();
   };
-
-  console.log(user, balance);
 
   return (
     <div className={styles.metamask}>

@@ -40,7 +40,7 @@ const Cabinet = () => {
       setSeminars(data);
     });
   }, []);
-  console.log(seminars);
+
   useEffect(() => {
     getAvatar().then((data) => {
       const blob = new Blob([data]);
@@ -54,7 +54,6 @@ const Cabinet = () => {
       try {
         const { subscription } = await getSubscription();
         setSubscription(subscription);
-        console.log(subscription);
       } catch (error) {
         console.log(error);
       }
@@ -64,8 +63,8 @@ const Cabinet = () => {
 
   const buySubs = async () => {
     try {
-      let subs = 'fullPackage';
-      const response = buySubscription(subs);
+      const subscription = 'signals';
+      const response = buySubscription(subscription);
       console.log(response);
     } catch (error) {
       console.log(error);
